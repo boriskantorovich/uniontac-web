@@ -1,17 +1,17 @@
 export const testimonials = [
   {
     imageSrc: "/images/testimonials/testimonials1.jpg",
-    quote: "Благодаря поддержке Насилию.Нет я смогла начать новую жизнь. Их помощь была неоценима в самый трудный период моей жизни.",
-    author: "Анна, 34 года"
+    quote: "Thanks to the support of Nasiliu.Net, I was able to start a new life. Their help was invaluable during the most difficult period of my life.",
+    author: "Anna, 34 years old"
   },
   {
     imageSrc: "/images/testimonials/testimonials2.jpg",
-    quote: "Психологическая поддержка, которую я получила, помогла мне восстановить веру в себя и свои силы. Я благодарна за эту возможность.",
-    author: "Мария, 28 лет"
+    quote: "The psychological support I received helped me regain faith in myself and my abilities. I am grateful for this opportunity.",
+    author: "Maria, 28 years old"
   },
   {
     imageSrc: "/images/testimonials/testimonials3.jpg",
-    quote: "Благодаря поддержке центра я смогла выбраться из ужасной ситуации и начать новую жизнь. Я бесконечно благодарна за их помощь и поддержку.",
-    author: "Елена, 29 лет"
+    quote: "Thanks to the support of the center, I was able to get out of a terrible situation and start a new life. I am infinitely grateful for their help and support.",
+    author: "Elena, 29 years old"
   }
 ];

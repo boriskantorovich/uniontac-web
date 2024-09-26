@@ -29,22 +29,22 @@ export function HeroComponent() {
         priority
       />
       <div className="absolute inset-0 bg-black opacity-60"></div>
-      <div className="relative z-10 max-w-[800px] w-full">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-left leading-tight">
-          ПОМОГИТЕ ЖЕНЩИНАМ, СТРАДАЮЩИМ ОТ ДОМАШНЕГО НАСИЛИЯ
+      <div className="relative z-10 max-w-[800px] w-full text-center">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          HELP WOMEN SUFFERING FROM DOMESTIC VIOLENCE
         </h1>
-        <p className="text-lg mb-8 text-left">
-          Получить экстренное убежище, психологическую помощь, комплексное сопровождение и вырваться из замкнутого круга
+        <p className="text-lg mb-8">
+          Get emergency shelter, psychological help, comprehensive support, and break free from the vicious cycle
         </p>
         <button 
-          className="w-full md:w-[400px] bg-red-600 hover:bg-red-700 text-white font-bold py-3 md:py-4 rounded-full transition duration-300 text-lg md:text-xl"
+          className="w-full md:w-[400px] bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 md:py-4 rounded-full transition duration-300 text-lg md:text-xl"
           onClick={handleDonateClick}
         >
-          <span className="block text-center">Помочь сейчас!</span>
+          <span className="block">Help Now!</span>
         </button>
         <div className="mt-4">
           <Link href="#learn-more" className="text-lg underline" onClick={handleLearnMoreClick}>
-            Узнать больше
+            Learn More
           </Link>
         </div>
       </div>

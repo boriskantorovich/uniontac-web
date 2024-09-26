@@ -32,15 +32,15 @@ export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormPr
       )}
       <div className="bg-white rounded-lg shadow-md p-6">
         <h3 className="text-xl md:text-2xl font-bold mb-4 text-left">
-          ПОМОГИТЕ ЖЕРТВАМ ДОМАШНЕГО НАСИЛИЯ
+          HELP VICTIMS OF DOMESTIC VIOLENCE
         </h3>
         <p className="text-gray-600 mb-4 text-left">
-         Получить экстренное убежище, <br />психологическую помощь, <br />комплексное сопровождение<br />и вырваться из замкнутого круга
+          Get emergency shelter, <br />psychological help, <br />comprehensive support<br />and break free from the vicious cycle
         </p>
         <p className="mb-4 text-left">
-          Подпишитесь на <span className="font-bold">ежемесячные</span> пожертвования
+          Subscribe to <span className="font-bold">monthly</span> donations
           <br /> <br />
-          Без вашей помощи они не справятся
+          They can't do it without your help
         </p>
         <div className="grid grid-cols-3 gap-4 mb-6">
           {Object.keys(paymentLinks).map((value) => (
@@ -50,8 +50,8 @@ export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormPr
               onClick={() => handleAmountClick(value)}
               className={`w-full ${
                 amount === value 
-                  ? 'bg-red-400 hover:bg-red-500 text-white' 
-                  : 'hover:bg-red-100'
+                  ? 'bg-yellow-500 hover:bg-yellow-600 text-white' 
+                  : 'hover:bg-yellow-100'
               }`}
             >
               ${value}
@@ -59,13 +59,13 @@ export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormPr
           ))}
         </div>
         <Button 
-          className="w-full bg-red-500 hover:bg-red-600 text-white mb-4 text-lg py-3 rounded-md"
+          className="w-full bg-yellow-500 hover:bg-yellow-600 text-white mb-4 text-lg py-3 rounded-md"
           onClick={handleDonateClick}
         >
-          Помочь сейчас!
+          Help Now!
         </Button>
         <p className="text-xs text-gray-500 text-left">
-          Нажимая кнопку, вы соглашаетесь с условиями обработки данных и подтверждаете добровольное пожертвование в НН (в общем, текст короче и все лигалы увести в ссылки)
+          By clicking the button, you agree to the terms of data processing and confirm a voluntary donation to NN (in general, the text is shorter and all legalities are taken to links)
         </p>
       </div>
     </div>

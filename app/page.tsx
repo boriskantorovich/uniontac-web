@@ -12,14 +12,14 @@ import { DonationFormWithCta } from '../components/donation-form-with-cta'
 export default function Home() {
   console.log('Testimonials:', testimonials);
 
-  const urgentCtaText = `ЧТОБЫ ОКАЗЫВАТЬ ЭКСТРЕННУЮ ПОМОЩЬ<br />
-    И СПАСАТЬ ЛЮДЕЙ,<br />
-    НАМ НУЖНА ВАША ПОДДЕРЖКА
-    <br /> <br /> ДАЖЕ $10 <br />ИЗМЕНЯТ ЧЬЮ-ТО ЖИЗНЬ`;
+  const urgentCtaText = `TO PROVIDE EMERGENCY ASSISTANCE<br />
+    AND SAVE LIVES,<br />
+    WE NEED YOUR SUPPORT
+    <br /> <br /> EVEN $10 <br />CAN CHANGE SOMEONE'S LIFE`;
 
-  const defaultCtaText = `НЕ ПРОХОДИТЕ МИМО ТЕХ,<br />
-    КТО ОТЧАЯННО НУЖДАЕТСЯ<br />
-    В ПОМОЩИ`;
+  const defaultCtaText = `DON'T PASS BY THOSE WHO<br />
+    DESPERATELY NEED<br />
+    HELP`;
 
   return (
     <div className="font-[family-name:var(--font-geist-sans)]">
@@ -34,7 +34,7 @@ export default function Home() {
       <div className="bg-black py-12 px-4 md:px-8">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-white text-left mb-8 uppercase">
-            Как помогает Насилию.Нет
+            How Nasiliu.Net Helps
           </h2>
           <div className="flex flex-col gap-8 items-center">
             <HelpCardComponent {...helpCardsData[0]} />
