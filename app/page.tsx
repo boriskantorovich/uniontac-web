@@ -8,6 +8,7 @@ import { Team } from '../components/team'
 import { testimonials } from '../data/testimonials'
 import { helpCardsData } from '../data/helpCardsData'
 import { DonationFormWithCta } from '../components/donation-form-with-cta'
+import { HowWeHelpComponent } from '../components/how-do-we-help'
 
 export default function Home() {
   console.log('Testimonials:', testimonials);
@@ -28,23 +29,9 @@ export default function Home() {
       <div id="learn-more">
         <CtaComponent />
       </div>
+      <HowWeHelpComponent />
       <div id="donate-now" className="max-w-4xl mx-auto">
         <DonationFormWithCta />
-      </div>
-      <div className="bg-black py-12 px-4 md:px-8">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-white text-left mb-8 uppercase">
-            How Nasiliu.Net Helps
-          </h2>
-          <div className="flex flex-col gap-8 items-center">
-            <HelpCardComponent {...helpCardsData[0]} />
-            <TestimonialCard testimonial={testimonials[0]} />
-            <HelpCardComponent {...helpCardsData[1]} />
-            <HelpCardComponent {...helpCardsData[2]} />
-            <TestimonialCard testimonial={testimonials[1]} />
-            <HelpCardComponent {...helpCardsData[3]} />
-          </div>
-        </div>
       </div>
       <div className="max-w-4xl mx-auto">
         <DonationFormWithCta showCTA={true} ctaText={urgentCtaText} />

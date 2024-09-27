@@ -30,20 +30,20 @@ export function HeroComponent() {
       />
       <div className="absolute inset-0 bg-black opacity-60"></div>
       <div className="relative z-10 max-w-[800px] w-full text-center">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-          HELP WOMEN SUFFERING FROM DOMESTIC VIOLENCE
+        <h1 className="text-8xl md:text-9xl lg:text-[10rem] font-bold mb-6 leading-tight">
+          Save a life now
         </h1>
-        <p className="text-lg mb-8">
-          Get emergency shelter, psychological help, comprehensive support, and break free from the vicious cycle
+        <p className="text-2xl mb-8">
+          Send a first aid kit<br /> to those fighting for freedom
         </p>
         <button 
-          className="w-full md:w-[400px] bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 md:py-4 rounded-full transition duration-300 text-lg md:text-xl"
+          className="w-full md:w-[400px] bg-yellow-400 hover:bg-yellow-500 font-semibold py-10 rounded-lg text-3xl transition duration-300"
           onClick={handleDonateClick}
         >
-          <span className="block">Help Now!</span>
+          Help Now!
         </button>
         <div className="mt-4">
-          <Link href="#learn-more" className="text-lg underline" onClick={handleLearnMoreClick}>
+          <Link href="#learn-more" className="text-2xl underline" onClick={handleLearnMoreClick}>
             Learn More
           </Link>
         </div>

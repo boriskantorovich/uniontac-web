@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Label } from "@/components/ui/label"
 
 interface DonationFormProps {
   showCTA?: boolean;
@@ -26,46 +28,53 @@ export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormPr
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6">
+    <div className="w-full max-w-2xl mx-auto p-6">
       {showCTA && ctaText && (
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left" dangerouslySetInnerHTML={{ __html: ctaText }}></h2>
       )}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h3 className="text-xl md:text-2xl font-bold mb-4 text-left">
-          HELP VICTIMS OF DOMESTIC VIOLENCE
-        </h3>
-        <p className="text-gray-600 mb-4 text-left">
-          Get emergency shelter, <br />psychological help, <br />comprehensive support<br />and break free from the vicious cycle
+      <div className="bg-blue-600 text-white p-8 rounded-3xl">
+        <h2 className="text-3xl font-bold mb-4">SAVE A LIFE TODAY</h2>
+        <p className="mb-6">
+        Every day since February 24, 2022, Ukrainian civilians have been under fire. <br /> <strong>There hasn’t been a single day without deaths and casualties.</strong>
         </p>
-        <p className="mb-4 text-left">
-          Subscribe to <span className="font-bold">monthly</span> donations
-          <br /> <br />
-          They can't do it without your help
-        </p>
-        <div className="grid grid-cols-3 gap-4 mb-6">
-          {Object.keys(paymentLinks).map((value) => (
-            <Button
-              key={value}
-              variant={amount === value ? "default" : "outline"}
-              onClick={() => handleAmountClick(value)}
-              className={`w-full ${
-                amount === value 
-                  ? 'bg-yellow-500 hover:bg-yellow-600 text-white' 
-                  : 'hover:bg-yellow-100'
-              }`}
-            >
-              ${value}
-            </Button>
-          ))}
-        </div>
-        <Button 
-          className="w-full bg-yellow-500 hover:bg-yellow-600 text-white mb-4 text-lg py-3 rounded-md"
-          onClick={handleDonateClick}
-        >
-          Help Now!
-        </Button>
-        <p className="text-xs text-gray-500 text-left">
-          By clicking the button, you agree to the terms of data processing and confirm a voluntary donation to NN (in general, the text is shorter and all legalities are taken to links)
+        <p className="text-xl mb-4">Subscribe to monthly support</p>
+        <p className="mb-6 font-semibold">Your donation can be the difference between life and death.</p>
+        
+        <form onSubmit={(e) => { e.preventDefault(); handleDonateClick(); }} className="space-y-6">
+          <RadioGroup
+            value={amount}
+            onValueChange={handleAmountClick}
+            className="grid grid-cols-3 gap-4"
+          >
+            {Object.keys(paymentLinks).map((value) => (
+              <div key={value}>
+                <RadioGroupItem
+                  value={value}
+                  id={`amount-${value}`}
+                  className="peer sr-only"
+                />
+                <Label
+                  htmlFor={`amount-${value}`}
+                  className={`flex items-center justify-center p-4 border-2 border-white rounded-lg cursor-pointer transition-colors ${
+                    amount === value ? 'bg-white text-blue-600' : 'hover:bg-white/10'
+                  }`}
+                >
+                  ${value}
+                </Label>
+              </div>
+            ))}
+          </RadioGroup>
+
+          <Button
+            type="submit"
+            className="w-full bg-white text-blue-600 hover:bg-blue-100 font-semibold py-10 rounded-lg text-3xl"
+          >
+            Help Now!
+          </Button>
+        </form>
+
+        <p className="mt-4 text-sm text-blue-100">
+          By clicking the button, you agree to the terms of data processing and confirm a voluntary donation to Uniontac (the text is shorter and all legalities are taken to links)
         </p>
       </div>
     </div>
