@@ -1,57 +1,55 @@
 "use client"
 
-import { useState, useRef } from 'react'
-import { Play, Pause } from 'lucide-react'
+import { useRef, useEffect } from 'react'
+import { Play } from 'lucide-react'
 
 interface VerticalVideoPlayerProps {
-  videoSrc?: string
+  videoSrc: string
   posterSrc?: string
+  title: string
+  isPlaying: boolean
+  onPlay: () => void
 }
 
-export function VerticalVideoPlayerComponent({ videoSrc, posterSrc }: VerticalVideoPlayerProps) {
-  const [isPlaying, setIsPlaying] = useState(false)
+export function VerticalVideoPlayerComponent({ videoSrc, title, isPlaying, onPlay }: VerticalVideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  const togglePlay = () => {
+  useEffect(() => {
     if (videoRef.current) {
       if (isPlaying) {
-        videoRef.current.pause()
-      } else {
         videoRef.current.play()
+      } else {
+        videoRef.current.pause()
+        // Reset video to first frame when paused
+        videoRef.current.currentTime = 0
       }
-      setIsPlaying(!isPlaying)
     }
+  }, [isPlaying])
+
+  const handlePlay = () => {
+    onPlay()
   }
 
   return (
-    <div className="px-4 py-2 w-full max-w-[450px] mx-auto">
-      <div className="relative w-full aspect-[9/16] bg-blue-600 overflow-hidden rounded-lg shadow-lg">
-        {videoSrc ? (
-          <video
-            ref={videoRef}
-            className="w-full h-full object-cover"
-            src={videoSrc}
-            poster={posterSrc}
-            playsInline
-            preload="metadata"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-white text-lg font-semibold">
-            Video Placeholder
-          </div>
-        )}
-        
-        <button
-          className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 transition-opacity duration-300 hover:bg-opacity-50"
-          onClick={togglePlay}
-          aria-label={isPlaying ? "Pause video" : "Play video"}
-        >
-          {isPlaying ? (
-            <Pause className="w-16 h-16 text-white opacity-80" />
-          ) : (
+    <div className="w-full">
+      <h3 className="text-xl font-semibold mb-2 text-center">{title}</h3>
+      <div className="relative w-full aspect-[9/16] overflow-hidden rounded-lg shadow-lg">
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover"
+          src={videoSrc}
+          playsInline
+          preload="metadata"
+        />
+        {!isPlaying && (
+          <button
+            className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 transition-opacity duration-300 hover:bg-opacity-50"
+            onClick={handlePlay}
+            aria-label="Play video"
+          >
             <Play className="w-16 h-16 text-white opacity-80" />
-          )}
-        </button>
+          </button>
+        )}
       </div>
     </div>
   )
