@@ -1,7 +1,7 @@
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowDownToLine } from 'lucide-react'
+import { CircleIcon } from 'lucide-react'
 
 const steps = [
   {
@@ -20,20 +20,23 @@ const steps = [
 
 export function HowWeHelpComponent() {
   return (
-    <div className="w-full max-w-2xl mx-auto p-6">
+    <div className="w-full max-w-6xl mx-auto p-6">
       <Card className="bg-yellow-400 p-8 rounded-3xl">
         <CardHeader className="p-0 mb-6">
-          <CardTitle className="text-3xl font-bold text-left text-blue-600">
+          <CardTitle className="text-3xl font-bold text-center text-blue-600">
             HOW IT WORKS
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
-          <div className="flex flex-col space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {steps.map((step, index) => (
               <div key={index} className="flex flex-col items-start text-left">
-                <ArrowDownToLine className="w-12 h-12 text-blue-600 mb-4" />
-                <h3 className="text-2xl font-semibold mb-2 text-blue-600">{step.title}</h3>
-                <p className="text-base text-blue-600 whitespace-pre-line font-semibold">{step.description}</p>
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 text-white mb-4">
+                  <CircleIcon className="w-8 h-8" />
+                  <span className="absolute font-bold">{index + 1}</span>
+                </div>
+                <h3 className="text-2xl font-bold mb-2 text-blue-600">{step.title}</h3>
+                <p className="text-lg font-semibold text-blue-600 whitespace-pre-line">{step.description}</p>
               </div>
             ))}
           </div>

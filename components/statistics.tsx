@@ -1,31 +1,43 @@
 'use client'
 
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
 export function StatisticsComponent() {
   return (
-    <div className="bg-white p-6 md:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
-      <h2 className="text-3xl md:text-4xl font-bold mb-8">NASILIU.NET</h2>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="flex flex-col">
-          <span className="text-4xl md:text-5xl font-bold">6</span>
-          <span className="text-lg md:text-xl">years of work</span>
-        </div>
-        
-        <div className="flex flex-col">
-          <span className="text-4xl md:text-5xl font-bold">XX XXX</span>
-          <span className="text-lg md:text-xl">victims<br />received<br />help</span>
-        </div>
-        
-        <div className="flex flex-col">
-          <span className="text-4xl md:text-5xl font-bold">15</span>
-          <span className="text-lg md:text-xl">people in<br />the team<br />of Nasiliu.Net</span>
-        </div>
-        
-        <div className="flex flex-col">
-          <span className="text-4xl md:text-5xl font-bold">X XX</span>
-          <span className="text-lg md:text-xl">volunteers help<br />in various projects of NN</span>
-        </div>
-      </div>
+    <div className="w-full max-w-2xl mx-auto p-6">
+      <Card className="bg-gray-900 text-white p-6 sm:p-10 rounded-3xl">
+        <CardHeader>
+          <CardTitle className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-2">
+            What we have done together
+          </CardTitle>
+          <p className="text-white text-center text-lg sm:text-xl">
+            War doesn't stop so we work daily.
+          </p>
+        </CardHeader>
+        <CardContent className="grid gap-8 md:grid-cols-2">
+          <div className="space-y-2">
+            <h3 className="text-5xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-300 text-transparent bg-clip-text">
+              486
+            </h3>
+            <h4 className="text-xl sm:text-2xl font-semibold">Medical kits delivered</h4>
+            <p className="text-white">
+              Thanks to your support, we've delivered 486 medical kits.
+            </p>
+            <p className="text-white">
+              That's more than <span className="font-bold bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-300 text-transparent bg-clip-text">950 lives saved.</span>
+            </p>
+          </div>
+          <div className="space-y-2">
+            <h3 className="text-5xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-300 text-transparent bg-clip-text">
+              53
+            </h3>
+            <h4 className="text-xl sm:text-2xl font-semibold">Brigades Supported</h4>
+            <p className="text-white">
+              We've delivered critical aid to 15 brigades, ensuring they have the medical supplies they need to save lives.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

@@ -5,9 +5,9 @@ import { HeroComponent } from '../components/hero'
 import { CtaComponent } from '../components/cta'
 import { NonprofitNavComponent } from '../components/nonprofit-nav'
 import { StatisticsComponent } from '../components/statistics'
-import { Team } from '../components/team'
 import { DonationFormWithCta } from '../components/donation-form-with-cta'
 import { HowWeHelpComponent } from '../components/how-do-we-help'
+import { MedkitComponent } from '../components/medkit'
 import { VerticalVideoPlayerComponent } from '../components/vertical-video-player'
 
 export default function Home() {
@@ -34,7 +34,7 @@ export default function Home() {
   }
 
   return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
+    <div className="font-[family-name:var(--font-geist-sans)] bg-black text-white">
       <NonprofitNavComponent />
       <HeroComponent />
       <div id="learn-more">
@@ -85,15 +85,16 @@ export default function Home() {
         </div>
       </div>
       
-      <div id="donate-now" className="max-w-4xl mx-auto">
+      <MedkitComponent />
+      
+      <div id="donate-now" className="max-w-2xl mx-auto">
         <DonationFormWithCta />
       </div>
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-2xl mx-auto">
         <DonationFormWithCta showCTA={true} ctaText={urgentCtaText} />
       </div>
       <StatisticsComponent />
-      <Team />
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-2xl mx-auto">
         <DonationFormWithCta showCTA={true} ctaText={defaultCtaText} />
       </div>
     </div>

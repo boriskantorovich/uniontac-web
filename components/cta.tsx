@@ -1,26 +1,34 @@
 'use client'
 
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
 export function CtaComponent() {
   return (
     <div className="w-full max-w-2xl mx-auto p-6">
-      <div className="bg-white rounded-3xl shadow-xl p-8 mb-8">
-        <div className="text-left">
-          <h2 className="text-3xl font-bold mb-4">THEY CAN'T WAIT—ACT NOW</h2>
-          <p className="text-base mb-4">
+      <Card className="bg-gray-900 text-white p-6 sm:p-10 rounded-3xl">
+        <CardHeader>
+          <CardTitle className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-2">
+            THEY CAN'T WAIT—ACT NOW
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <p className="text-white text-lg">
             Every day, Russia shells Ukrainians with all possible weapons: drones, artillery, bombs and rockets, bringing death to ordinary people—women and children.
           </p>
-          <p className="text-base mb-4">
+          <p className="text-white text-lg">
             Those on the frontline are losing their lives to protect their families, homes, freedom, and justice.
           </p>
-          <p className="text-base mb-4">
+          <p className="text-white text-lg">
             For over a year, Uniontac has been providing vital support to Ukraine—medkits that save lives in critical moments.
           </p>
-          <p className="text-base mb-4">
+          <p className="text-white text-lg">
             One first aid kit can save two lives, increasing the chances of survival and allowing evacuation from the combat zone.
           </p>
-          <p className="text-3xl font-bold mb-4">HELP US SAVE LIVES!</p>
-        </div>
-      </div>
+          <p className="text-3xl font-bold text-center bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-300 text-transparent bg-clip-text">
+            HELP US SAVE LIVES!
+          </p>
+        </CardContent>
+      </Card>
     </div>
   )
 }

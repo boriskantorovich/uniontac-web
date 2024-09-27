@@ -33,13 +33,13 @@ export function HeroComponent() {
           <h1 className="text-8xl md:text-9xl lg:text-[10rem] font-bold mb-6 leading-[0.9]">
             Save a&nbsp;life now
           </h1>
-          <p className="text-2xl mb-16 font-semibold">
+          <p className="text-2xl mb-16 md:mb-24 font-semibold">
             Send a&nbsp;first aid kit<br /> to&nbsp;those fighting for&nbsp;freedom
           </p>
         </div>
         <div className="flex flex-col items-center">
           <button 
-            className="w-full md:w-[400px] bg-yellow-400 hover:bg-yellow-500 font-semibold py-8 rounded-lg text-3xl transition duration-300 mb-4"
+            className="w-full md:w-[400px] bg-blue-600 hover:bg-blue-700 text-white font-semibold py-10 rounded-lg text-3xl transition duration-300 mb-4"
             onClick={handleDonateClick}
           >
             Help Now!

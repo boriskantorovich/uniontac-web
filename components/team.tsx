@@ -10,7 +10,7 @@ export function Team() {
   ];
 
   return (
-    <div className="bg-white p-6 md:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
+    <div className="bg-gray-900 text-white p-6 md:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
       <div className="space-y-8">
         {teamMembers.map((member, index) => (
           <div key={index} className="flex items-center space-x-6">
@@ -30,7 +30,7 @@ export function Team() {
           </div>
         ))}
       </div>
-      <p className="mt-8 text-gray-700 text-lg">
+      <p className="mt-8 text-gray-300 text-lg">
         And another <strong>12 people</strong> who work full-time
       </p>
     </div>
