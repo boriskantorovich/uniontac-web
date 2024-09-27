@@ -15,7 +15,8 @@ import { HowWeHelpComponent } from '../components/how-do-we-help'
 import { VerticalVideoPlayerComponent } from '../components/vertical-video-player'
 
 export default function Home() {
-  const [playingVideo, setPlayingVideo] = useState<number | null>(null)
+  const [playingVideo1, setPlayingVideo1] = useState<number | null>(null)
+  const [playingVideo2, setPlayingVideo2] = useState<number | null>(null)
 
   console.log('Testimonials:', testimonials);
 
@@ -28,8 +29,14 @@ export default function Home() {
     DESPERATELY NEED<br />
     HELP`;
 
-  const handleVideoPlayPause = (index: number) => {
-    setPlayingVideo(prevPlayingVideo => prevPlayingVideo === index ? null : index)
+  const handleVideoPlayPause1 = (index: number) => {
+    setPlayingVideo1(prevPlayingVideo => prevPlayingVideo === index ? null : index)
+    setPlayingVideo2(null) // Pause any playing video in the second set
+  }
+
+  const handleVideoPlayPause2 = (index: number) => {
+    setPlayingVideo2(prevPlayingVideo => prevPlayingVideo === index ? null : index)
+    setPlayingVideo1(null) // Pause any playing video in the first set
   }
 
   return (
@@ -40,32 +47,50 @@ export default function Home() {
         <CtaComponent />
       </div>
       
-      {/* Video Players Section */}
+      {/* First Video Players Section */}
       <div className="w-full max-w-6xl mx-auto p-6">
-        <h2 className="text-3xl font-bold mb-6 text-center">Our Impact</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <VerticalVideoPlayerComponent 
             videoSrc="/videos/Uniontac1.mp4" 
-            title="Delivering Aid"
-            isPlaying={playingVideo === 0}
-            onPlay={() => handleVideoPlayPause(0)}
+            isPlaying={playingVideo1 === 0}
+            onPlayPause={() => handleVideoPlayPause1(0)}
           />
           <VerticalVideoPlayerComponent 
             videoSrc="/videos/Uniontac2.mp4" 
-            title="Training Medics"
-            isPlaying={playingVideo === 1}
-            onPlay={() => handleVideoPlayPause(1)}
+            isPlaying={playingVideo1 === 1}
+            onPlayPause={() => handleVideoPlayPause1(1)}
           />
           <VerticalVideoPlayerComponent 
             videoSrc="/videos/Uniontac3.mp4" 
-            title="Saving Lives"
-            isPlaying={playingVideo === 2}
-            onPlay={() => handleVideoPlayPause(2)}
+            isPlaying={playingVideo1 === 2}
+            onPlayPause={() => handleVideoPlayPause1(2)}
           />
         </div>
       </div>
       
       <HowWeHelpComponent />
+
+      {/* Second Video Players Section */}
+      <div className="w-full max-w-6xl mx-auto p-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <VerticalVideoPlayerComponent 
+            videoSrc="/videos/Uniontac4.mp4" 
+            isPlaying={playingVideo2 === 0}
+            onPlayPause={() => handleVideoPlayPause2(0)}
+          />
+          <VerticalVideoPlayerComponent 
+            videoSrc="/videos/Uniontac5.mp4" 
+            isPlaying={playingVideo2 === 1}
+            onPlayPause={() => handleVideoPlayPause2(1)}
+          />
+          <VerticalVideoPlayerComponent 
+            videoSrc="/videos/Uniontac6.mp4" 
+            isPlaying={playingVideo2 === 2}
+            onPlayPause={() => handleVideoPlayPause2(2)}
+          />
+        </div>
+      </div>
+      
       <div id="donate-now" className="max-w-4xl mx-auto">
         <DonationFormWithCta />
       </div>

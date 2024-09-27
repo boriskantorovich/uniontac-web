@@ -5,13 +5,11 @@ import { Play } from 'lucide-react'
 
 interface VerticalVideoPlayerProps {
   videoSrc: string
-  posterSrc?: string
-  title: string
   isPlaying: boolean
-  onPlay: () => void
+  onPlayPause: () => void
 }
 
-export function VerticalVideoPlayerComponent({ videoSrc, title, isPlaying, onPlay }: VerticalVideoPlayerProps) {
+export function VerticalVideoPlayerComponent({ videoSrc, isPlaying, onPlayPause }: VerticalVideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -20,19 +18,16 @@ export function VerticalVideoPlayerComponent({ videoSrc, title, isPlaying, onPla
         videoRef.current.play()
       } else {
         videoRef.current.pause()
-        // Reset video to first frame when paused
-        videoRef.current.currentTime = 0
       }
     }
   }, [isPlaying])
 
-  const handlePlay = () => {
-    onPlay()
+  const handlePlayPause = () => {
+    onPlayPause()
   }
 
   return (
     <div className="w-full">
-      <h3 className="text-xl font-semibold mb-2 text-center">{title}</h3>
       <div className="relative w-full aspect-[9/16] overflow-hidden rounded-lg shadow-lg">
         <video
           ref={videoRef}
@@ -40,11 +35,12 @@ export function VerticalVideoPlayerComponent({ videoSrc, title, isPlaying, onPla
           src={videoSrc}
           playsInline
           preload="metadata"
+          onClick={handlePlayPause}
         />
         {!isPlaying && (
           <button
             className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 transition-opacity duration-300 hover:bg-opacity-50"
-            onClick={handlePlay}
+            onClick={handlePlayPause}
             aria-label="Play video"
           >
             <Play className="w-16 h-16 text-white opacity-80" />

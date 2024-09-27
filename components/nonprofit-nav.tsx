@@ -9,9 +9,10 @@ export function NonprofitNavComponent() {
   const [isOpen, setIsOpen] = useState(false)
 
   const menuItems = [
-    { name: "Get Help", href: "https://nasiliu.net/" },
-    { name: "About Us", href: "https://nasiliu.net/o-nas/" },
-    { name: "Reports", href: "https://nasiliu.net/report/" },
+    { name: "How to help", href: "/how-to-help" },
+    { name: "Get help", href: "/get-help" },
+    { name: "About us", href: "/about" },
+    { name: "Reports", href: "/reports" },
   ]
 
   const handleDonateClick = () => {

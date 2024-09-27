@@ -24,7 +24,6 @@ export function CtaComponent() {
           <p className="text-3xl font-bold mb-4">HELP US SAVE LIVES!</p>
         </div>
       </div>
-      <TestimonialCard testimonial={testimonials[2]} />
     </div>
   )
 }
