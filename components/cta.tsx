@@ -1,8 +1,5 @@
 'use client'
 
-import { TestimonialCard } from './testimonial-card'
-import { testimonials } from '../data/testimonials'
-
 export function CtaComponent() {
   return (
     <div className="w-full max-w-2xl mx-auto p-6">

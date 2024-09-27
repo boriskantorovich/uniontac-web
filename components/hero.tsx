@@ -20,7 +20,7 @@ export function HeroComponent() {
   };
 
   return (
-    <div className="relative h-[600px] md:h-[800px] flex flex-col justify-center items-center p-6 text-white font-sans">
+    <div className="relative h-[750px] md:h-[800px] flex flex-col justify-center items-center p-6 text-white font-sans">
       <Image
         src="/images/hero/hero-background.jpg"
         alt="Background"
@@ -28,21 +28,22 @@ export function HeroComponent() {
         className="object-cover"
         priority
       />
-      <div className="absolute inset-0 bg-black opacity-60"></div>
-      <div className="relative z-10 max-w-[800px] w-full text-center">
-        <h1 className="text-8xl md:text-9xl lg:text-[10rem] font-bold mb-6 leading-tight">
-          Save a life now
-        </h1>
-        <p className="text-2xl mb-8">
-          Send a first aid kit<br /> to those fighting for freedom
-        </p>
-        <button 
-          className="w-full md:w-[400px] bg-yellow-400 hover:bg-yellow-500 font-semibold py-10 rounded-lg text-3xl transition duration-300"
-          onClick={handleDonateClick}
-        >
-          Help Now!
-        </button>
-        <div className="mt-4">
+      <div className="relative z-10 max-w-[800px] w-full text-center flex flex-col justify-between h-full py-12">
+        <div>
+          <h1 className="text-8xl md:text-9xl lg:text-[10rem] font-bold mb-6 leading-[0.9]">
+            Save a&nbsp;life now
+          </h1>
+          <p className="text-2xl mb-16 font-semibold">
+            Send a&nbsp;first aid kit<br /> to&nbsp;those fighting for&nbsp;freedom
+          </p>
+        </div>
+        <div className="flex flex-col items-center">
+          <button 
+            className="w-full md:w-[400px] bg-yellow-400 hover:bg-yellow-500 font-semibold py-8 rounded-lg text-3xl transition duration-300 mb-4"
+            onClick={handleDonateClick}
+          >
+            Help Now!
+          </button>
           <Link href="#learn-more" className="text-2xl underline" onClick={handleLearnMoreClick}>
             Learn More
           </Link>

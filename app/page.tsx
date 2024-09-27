@@ -3,13 +3,9 @@
 import { useState } from 'react'
 import { HeroComponent } from '../components/hero'
 import { CtaComponent } from '../components/cta'
-import { HelpCardComponent } from '../components/help-card'
-import { TestimonialCard } from '../components/testimonial-card'
 import { NonprofitNavComponent } from '../components/nonprofit-nav'
 import { StatisticsComponent } from '../components/statistics'
 import { Team } from '../components/team'
-import { testimonials } from '../data/testimonials'
-import { helpCardsData } from '../data/helpCardsData'
 import { DonationFormWithCta } from '../components/donation-form-with-cta'
 import { HowWeHelpComponent } from '../components/how-do-we-help'
 import { VerticalVideoPlayerComponent } from '../components/vertical-video-player'
@@ -17,8 +13,6 @@ import { VerticalVideoPlayerComponent } from '../components/vertical-video-playe
 export default function Home() {
   const [playingVideo1, setPlayingVideo1] = useState<number | null>(null)
   const [playingVideo2, setPlayingVideo2] = useState<number | null>(null)
-
-  console.log('Testimonials:', testimonials);
 
   const urgentCtaText = `TO PROVIDE EMERGENCY ASSISTANCE<br />
     AND SAVE LIVES,<br />
