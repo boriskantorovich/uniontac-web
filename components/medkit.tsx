@@ -30,16 +30,9 @@ export function MedkitComponent() {
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="col-span-2">
-              <ul className="list-disc list-inside space-y-2">
-                {medkitItems.map((item, index) => (
-                  <li key={index} className="text-lg font-semibold text-blue-600">{item}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <div className="relative w-full h-48 rounded-lg overflow-hidden">
+          <div className="flex flex-col md:flex-row gap-8">
+            <div className="md:order-2 md:w-1/2 space-y-4">
+              <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
                 <Image
                   src="/images/medkit1.jpg"
                   alt="Medkit Image 1"
@@ -47,7 +40,7 @@ export function MedkitComponent() {
                   className="object-cover"
                 />
               </div>
-              <div className="relative w-full h-48 rounded-lg overflow-hidden">
+              <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
                 <Image
                   src="/images/medkit2.jpg"
                   alt="Medkit Image 2"
@@ -55,6 +48,13 @@ export function MedkitComponent() {
                   className="object-cover"
                 />
               </div>
+            </div>
+            <div className="md:order-1 md:w-1/2">
+              <ul className="list-disc list-inside space-y-2">
+                {medkitItems.map((item, index) => (
+                  <li key={index} className="text-lg font-semibold text-blue-600">{item}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </CardContent>
