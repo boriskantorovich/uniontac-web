@@ -35,12 +35,11 @@ export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormPr
       <div className="bg-blue-600 text-white p-8 rounded-3xl">
         <h2 className="text-3xl font-bold mb-4">SAVE A LIFE TODAY</h2>
         <p className="mb-6">
-        Every day since February 24, 2022, Ukrainian civilians have been under fire. <br /> <strong>There hasn’t been a single day without deaths and casualties.</strong>
+          Since February 24, 2022, <strong>there hasn't been a single day without deaths and casualties</strong> in Ukraine.
         </p>
-        <p className="text-xl mb-4">Subscribe to monthly support</p>
-        <p className="mb-6 font-semibold">Your donation can be the difference between life and death.</p>
+        <p className="text-xl mb-8">Subscribe to monthly support</p>
         
-        <form onSubmit={(e) => { e.preventDefault(); handleDonateClick(); }} className="space-y-6">
+        <form onSubmit={(e) => { e.preventDefault(); handleDonateClick(); }} className="space-y-6 mb-8">
           <RadioGroup
             value={amount}
             onValueChange={handleAmountClick}
@@ -72,7 +71,7 @@ export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormPr
             Help Now!
           </Button>
         </form>
-
+        
         <p className="mt-4 text-sm text-blue-100">
           By clicking the button, you agree to the terms of data processing and confirm a voluntary donation to Uniontac (the text is shorter and all legalities are taken to links)
         </p>

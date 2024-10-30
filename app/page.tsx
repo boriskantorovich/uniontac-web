@@ -9,7 +9,6 @@ import { HowWeHelpComponent } from '@/components/how-do-we-help'
 import { MedkitComponent } from '@/components/medkit'
 import { VerticalVideoPlayerComponent } from '@/components/vertical-video-player'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { FirstAidKitStatsComponent } from '@/components/first-aid-kit-stats'
 import { AboutUsComponent } from '@/components/about-us'
 
 export default function Home() {
@@ -23,7 +22,7 @@ export default function Home() {
   const urgentCtaText = `TO PROVIDE EMERGENCY ASSISTANCE<br />
     AND SAVE LIVES,<br />
     WE NEED YOUR SUPPORT
-    <br /> <br /> EVEN $10 <br />CAN CHANGE SOMEONE'S LIFE`;
+    <br /> <br /> EVEN $15 <br />CAN CHANGE SOMEONE'S LIFE`;
 
   const defaultCtaText = `DON'T PASS BY THOSE WHO<br />
     DESPERATELY NEED<br />
@@ -62,6 +61,14 @@ export default function Home() {
       <div id="learn-more">
         <CtaComponent />
       </div>
+
+      <MedkitComponent />
+      
+      <div className="max-w-2xl mx-auto">
+        <DonationFormWithCta showCTA={true} ctaText={urgentCtaText} />
+      </div>
+
+      <StatisticsComponent />
       
       {/* First Video Players Section */}
       <div className="w-full max-w-6xl mx-auto p-6 relative">
@@ -113,9 +120,10 @@ export default function Home() {
           </button>
         </div>
       </div>
-      
-      <MedkitComponent />
 
+      <HowWeHelpComponent />
+      <AboutUsComponent />
+      
       {/* Second Video Players Section */}
       <div className="w-full max-w-6xl mx-auto p-6 relative">
         <div 
@@ -167,15 +175,6 @@ export default function Home() {
         </div>
       </div>
       
-      <div className="max-w-2xl mx-auto">
-        <DonationFormWithCta showCTA={true} ctaText={urgentCtaText} />
-      </div>
-
-      <HowWeHelpComponent />
-      <StatisticsComponent />
-      <FirstAidKitStatsComponent />
-      <AboutUsComponent />
-    
       <div className="max-w-2xl mx-auto">
         <DonationFormWithCta showCTA={true} ctaText={defaultCtaText} />
       </div>

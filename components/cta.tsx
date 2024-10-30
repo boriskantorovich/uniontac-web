@@ -24,9 +24,6 @@ export function CtaComponent() {
           <p className="text-white text-lg">
             One first aid kit can save two lives, increasing the chances of survival and allowing evacuation from the combat zone.
           </p>
-          <p className="text-3xl font-bold text-center bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-300 text-transparent bg-clip-text">
-            HELP US SAVE LIVES!
-          </p>
         </CardContent>
       </Card>
     </div>

@@ -15,6 +15,10 @@ const steps = [
   {
     title: "Medkits save lives",
     description: "Our volunteers deliver these life-saving supplies without delay, despite the daily shelling and threats.\n\nWe ensure the kits reach people on the frontlines—civilians, medics, and defenders—providing exactly what they need to save lives."
+  },
+  {
+    title: "Continuous Support",
+    description: "Our dedicated team monitors the distribution and impact of each medical kit.\n\nWe maintain constant communication with field units to understand evolving needs.\n\nThis feedback helps us improve and adapt our support to maximize effectiveness."
   }
 ]
 
@@ -28,7 +32,7 @@ export function HowWeHelpComponent() {
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {steps.map((step, index) => (
               <div key={index} className="flex flex-col items-start text-left">
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 text-white mb-4">

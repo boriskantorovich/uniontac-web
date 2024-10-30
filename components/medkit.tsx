@@ -3,30 +3,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Image from 'next/image'
 
-const medkitItems = [
-  "1x Pouch",
-  "1x Israeli-type Bandage 6\"",
-  "1x Nasopharyngeal Airway with Lubricant (\"Kyivguma\")",
-  "1x Thermal Blanket (Pixel)",
-  "1x Tactical Scissors",
-  "1x Marker",
-  "1x Non-woven Base Plaster (10 m)",
-  "2x Pairs of Nitrile Gloves",
-  "1x Tourniquet (\"SICH\")",
-  "1x Sterile Compressed Bandage (for tamponade)",
-  "1x Hemostatic Corrugated Bandage (\"Hemostat\")",
-  "1x Eye Patch",
-  "1x Occlusive Sticker (\"Kyivguma\" with valve)",
-  "1x Gel Burn Dressing (\"Opikun\" 10x10 cm)"
-]
-
 export function MedkitComponent() {
   return (
     <div className="w-full max-w-6xl mx-auto p-6">
       <Card className="bg-yellow-400 p-8 rounded-3xl">
         <CardHeader className="p-0 mb-6">
           <CardTitle className="text-3xl font-bold text-center text-blue-600">
-            WHAT'S INCLUDED IN FIRST-AID KIT:
+            HOW THE FIRST-AID KIT WORKS
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
@@ -50,11 +33,14 @@ export function MedkitComponent() {
               </div>
             </div>
             <div className="md:order-1 md:w-1/2">
-              <ul className="list-disc list-inside space-y-2">
-                {medkitItems.map((item, index) => (
-                  <li key={index} className="text-lg font-semibold text-blue-600">{item}</li>
-                ))}
-              </ul>
+              <div className="space-y-4 text-lg text-blue-600">
+                <p>
+                  Our first-aid kit is designed for immediate response to trauma and emergency situations. Each component is carefully selected and arranged for quick access, allowing responders to provide critical care in the crucial first minutes after an injury. The kit includes essential items for controlling bleeding, managing airways, and treating various trauma conditions.
+                </p>
+                <p>
+                  The compact and durable design ensures that all life-saving equipment stays protected and organized. Color-coded sections and clear labeling make it easy to locate specific items under pressure, while the water-resistant exterior protects the contents in any environment. This kit meets international emergency medical standards and is regularly updated based on field experience and medical advances.
+                </p>
+              </div>
             </div>
           </div>
         </CardContent>
