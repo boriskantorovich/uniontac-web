@@ -28,7 +28,7 @@ export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormPr
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-6">
+    <div className="w-full p-6">
       {showCTA && ctaText && (
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left" dangerouslySetInnerHTML={{ __html: ctaText }}></h2>
       )}

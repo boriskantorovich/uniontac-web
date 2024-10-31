@@ -24,7 +24,7 @@ const steps = [
 
 export function HowWeHelpComponent() {
   return (
-    <div className="w-full max-w-6xl mx-auto p-6">
+    <div className="w-full p-6">
       <Card className="bg-yellow-400 p-8 rounded-3xl">
         <CardHeader className="p-0 mb-6">
           <CardTitle className="text-3xl font-bold text-center text-blue-600">

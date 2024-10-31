@@ -6,7 +6,7 @@ import Image from "next/image"
 
 export function AboutUsComponent() {
   return (
-    <Card className="bg-gray-900 text-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-3xl">
+    <Card className="bg-gray-900 text-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-3xl m-6">
       <CardHeader className="text-center">
         <div className="grid grid-cols-2 gap-2 mb-6">
           <Image src="/placeholder.svg?height=200&width=200" width={200} height={200} alt="Sveta" className="rounded-lg" />
