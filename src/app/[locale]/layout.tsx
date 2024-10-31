@@ -21,7 +21,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <NonprofitNavComponent />
-      <main className="pt-16">
+      <main className="pt-16 font-sans">
         {children}
       </main>
     </NextIntlClientProvider>

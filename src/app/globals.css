@@ -54,6 +54,9 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+  html {
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
   }
 }
