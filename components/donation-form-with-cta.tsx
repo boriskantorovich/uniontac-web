@@ -13,7 +13,7 @@ interface DonationFormProps {
 const paymentLinks = {
   '10': 'https://buy.stripe.com/fZedRQ9GhgQvgsUaEF',
   '15': 'https://buy.stripe.com/fZe1549GhdEjfoQbIK',
-  '25': 'https://buy.stripe.com/8wMcNMaKl0Rx5OgdQTh'
+  '25': 'https://buy.stripe.com/8wMcNMaKl0Rx5OgdQT'
 };
 
 export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormProps) {
@@ -24,7 +24,7 @@ export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormPr
   }
 
   const handleDonateClick = () => {
-    window.open(paymentLinks[amount as keyof typeof paymentLinks], '_blank')
+    window.location.href = paymentLinks[amount as keyof typeof paymentLinks]
   }
 
   return (
