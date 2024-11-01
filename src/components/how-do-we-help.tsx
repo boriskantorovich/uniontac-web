@@ -24,8 +24,8 @@ const steps = [
 
 export function HowWeHelpComponent() {
   return (
-    <div className="w-full p-6">
-      <Card className="bg-yellow-400 p-8 rounded-3xl">
+    <div className="w-full">
+      <Card className="bg-yellow-400 p-6">
         <CardHeader className="p-0 mb-6">
           <CardTitle className="text-[48px] font-semibold text-left text-blue-600">
             How it works
