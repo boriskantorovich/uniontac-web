@@ -21,7 +21,7 @@ export function HeroComponent() {
       />
       <div className="absolute inset-0 bg-black/40" /> 
       
-      <div className="container relative z-10 flex flex-col justify-between h-full py-12 md:py-24">
+      <div className="w-full p-6 relative z-10 flex flex-col justify-between h-full py-12 md:py-24">
         <div className="text-left">
           <h1 
             className="text-8xl md:text-8xl lg:text-[10rem] font-bold mb-8 leading-[0.9]"

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter, usePathname } from '@/i18n/routing';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { scrollHandlers } from "@/utils/scroll-handlers"
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -10,8 +10,9 @@ export function NonprofitNavComponent() {
   const t = useTranslations('nav');
   const router = useRouter();
   const pathname = usePathname();
+  const currentLocale = useLocale();
   const [isAfterHero, setIsAfterHero] = useState(false);
-  const [activeLocale, setActiveLocale] = useState('en');
+  const [activeLocale, setActiveLocale] = useState(currentLocale);
 
   useEffect(() => {
     const handleScroll = () => {
