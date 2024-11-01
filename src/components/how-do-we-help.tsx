@@ -25,9 +25,9 @@ const steps = [
 export function HowWeHelpComponent() {
   return (
     <div className="w-full">
-      <Card className="bg-yellow-400 p-6">
+      <Card className="bg-gradient-to-r from-yellow-300 to-blue-300 p-6 border-0 ring-0 ring-offset-0 shadow-none">
         <CardHeader className="p-0 mb-6">
-          <CardTitle className="text-[48px] font-semibold text-left text-blue-600">
+          <CardTitle className="text-[48px] font-semibold text-left text-black">
             How it works
           </CardTitle>
         </CardHeader>
@@ -35,12 +35,12 @@ export function HowWeHelpComponent() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {steps.map((step, index) => (
               <div key={index} className="flex flex-col items-start text-left">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 text-white mb-4">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-black text-white mb-4">
                   <CircleIcon className="w-8 h-8" />
                   <span className="absolute font-bold">{index + 1}</span>
                 </div>
-                <h3 className="text-2xl font-bold mb-2 text-blue-600">{step.title}</h3>
-                <p className="text-lg font-semibold text-blue-600 whitespace-pre-line">{step.description}</p>
+                <h3 className="text-2xl font-bold mb-2 text-black">{step.title}</h3>
+                <p className="text-lg font-semibold text-black whitespace-pre-line">{step.description}</p>
               </div>
             ))}
           </div>

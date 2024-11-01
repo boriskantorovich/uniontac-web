@@ -6,9 +6,9 @@ import Image from 'next/image'
 export function MedkitComponent() {
   return (
     <div className="w-full">
-      <Card className="bg-yellow-400 p-6 border-0 ring-0 ring-offset-0 shadow-none">
+      <Card className="bg-gradient-to-r from-yellow-300 to-blue-300 p-6 border-0 ring-0 ring-offset-0 shadow-none">
         <CardHeader>
-          <CardTitle className="text-[48px] font-semibold text-left text-blue-600">
+          <CardTitle className="text-[48px] font-semibold text-left text-black">
             How the first-aid kit works
           </CardTitle>
         </CardHeader>
@@ -35,7 +35,7 @@ export function MedkitComponent() {
               </div>
             </div>
             <div className="md:order-1 md:w-1/2">
-              <div className="space-y-4 text-lg text-blue-600">
+              <div className="space-y-4 text-lg text-black font-semibold">
                 <p>
                   Our first-aid kit is designed for immediate response to trauma and emergency situations. Each component is carefully selected and arranged for quick access, allowing responders to provide critical care in the crucial first minutes after an injury. The kit includes essential items for controlling bleeding, managing airways, and treating various trauma conditions.
                 </p>

@@ -28,7 +28,7 @@ export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormPr
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-14 pb-14">
       <div className="flex flex-col md:flex-row md:gap-8">
         <div className="md:w-1/2 px-6 md:px-6 mb-6 md:mb-0">
           {showCTA && ctaText && (
