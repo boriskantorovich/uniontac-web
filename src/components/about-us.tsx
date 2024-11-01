@@ -14,11 +14,11 @@ export function AboutUsComponent() {
           <Image src="/placeholder.svg?height=200&width=200" width={200} height={200} alt="Close-up of eyes" className="rounded-lg" />
           <Image src="/placeholder.svg?height=200&width=200" width={200} height={200} alt="Kira working" className="rounded-lg" />
         </div>
-        <div className="text-blue-400 text-sm font-semibold mb-2">ABOUT US</div>
-        <CardTitle className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-          WE ARE{" "}
+        <div className="text-blue-400 text-sm font-semibold mb-2">About us</div>
+        <CardTitle className="text-[48px] font-semibold mb-4 text-left">
+          We are{" "}
           <span className="bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 text-transparent bg-clip-text">
-            SVETA AND KIRA
+            Sveta and Kira
           </span>
         </CardTitle>
       </CardHeader>

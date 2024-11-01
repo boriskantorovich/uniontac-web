@@ -20,26 +20,30 @@ export function HeroComponent() {
   };
 
   return (
-    <div className="relative h-[750px] md:h-[800px] flex flex-col justify-center items-center p-6 text-white font-sans">
+    <div className="relative h-[750px] md:h-[800px] flex flex-col justify-center text-white font-sans border-0">
       <Image
-        src="/images/hero/hero-background.jpg"
+        src="/images/hero/hero.jpg"
         alt="Background"
         fill
-        className="object-cover"
         priority
+        quality={85}
+        sizes="100vw"
+        className="object-cover"
       />
-      <div className="relative z-10 max-w-[800px] w-full text-center flex flex-col justify-between h-full py-12">
-        <div>
-          <h1 className="text-8xl md:text-9xl lg:text-[10rem] font-bold mb-6 leading-[0.9]">
-            Save a&nbsp;life now
+      <div className="absolute inset-0 bg-black/40" /> 
+      
+      <div className="container relative z-10 flex flex-col justify-between h-full py-24">
+        <div className="text-left">
+          <h1 className="text-8xl md:text-8xl lg:text-[10rem] font-bold mb-12 leading-[0.9]">
+            Save a&nbsp;life<br />now
           </h1>
-          <p className="text-2xl mb-16 md:mb-24 font-semibold">
-            Send a&nbsp;first aid kit<br /> to&nbsp;those fighting for&nbsp;freedom
+          <p className="text-3xl mb-32 md:mb-48 font-semibold">
+            Send a first aid kit<br /> to those fighting for freedom
           </p>
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-start gap-8">
           <button 
-            className="w-full md:w-[400px] bg-blue-600 hover:bg-blue-700 text-white font-semibold py-10 rounded-lg text-3xl transition duration-300 mb-4"
+            className="w-full md:w-[400px] bg-blue-600 hover:bg-blue-700 text-white font-semibold py-10 rounded-lg text-3xl transition duration-300 mb-8"
             onClick={handleDonateClick}
           >
             Help Now!

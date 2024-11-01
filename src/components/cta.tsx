@@ -4,11 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export function CtaComponent() {
   return (
-    <div className="w-full p-6">
-      <Card className="bg-gray-900 text-white p-6 sm:p-10 rounded-3xl">
+    <div className="w-full">
+      <Card className="bg-gray-900 text-white p-6 sm:p-10 rounded-3xl border-0 ring-0 ring-offset-0 shadow-none">
         <CardHeader>
-          <CardTitle className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-2">
-            THEY CAN'T WAIT—ACT NOW
+          <CardTitle className="text-[48px] font-semibold text-left mb-2">
+            They can't wait—act now
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">

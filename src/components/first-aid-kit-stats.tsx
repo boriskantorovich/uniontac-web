@@ -6,10 +6,10 @@ export function FirstAidKitStatsComponent() {
   return (
     <Card className="bg-gray-900 text-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-3xl">
       <CardHeader className="text-center">
-        <CardTitle className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-          First Aid Kit — A{" "}
+        <CardTitle className="text-[48px] font-semibold text-left mb-4">
+          First aid kit — a{" "}
           <span className="bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 text-transparent bg-clip-text">
-            Chance for Life!
+            chance for life!
           </span>
         </CardTitle>
         <p className="text-gray-400 text-xs sm:text-sm md:text-base mb-4">

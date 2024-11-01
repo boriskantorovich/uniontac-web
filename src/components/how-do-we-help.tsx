@@ -27,8 +27,8 @@ export function HowWeHelpComponent() {
     <div className="w-full p-6">
       <Card className="bg-yellow-400 p-8 rounded-3xl">
         <CardHeader className="p-0 mb-6">
-          <CardTitle className="text-3xl font-bold text-center text-blue-600">
-            HOW IT WORKS
+          <CardTitle className="text-[48px] font-semibold text-left text-blue-600">
+            How it works
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">

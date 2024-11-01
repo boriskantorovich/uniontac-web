@@ -7,7 +7,7 @@ export function StatisticsComponent() {
     <div className="w-full p-6">
       <Card className="bg-gray-900 text-white p-6 sm:p-10 rounded-3xl">
         <CardHeader>
-          <CardTitle className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-2">
+          <CardTitle className="text-[48px] font-semibold text-left mb-2">
             What we have done together
           </CardTitle>
           <p className="text-white text-center text-lg sm:text-xl">

@@ -33,7 +33,7 @@ export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormPr
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left" dangerouslySetInnerHTML={{ __html: ctaText }}></h2>
       )}
       <div className="bg-blue-600 text-white p-8 rounded-3xl">
-        <h2 className="text-3xl font-bold mb-4">SAVE A LIFE TODAY</h2>
+        <h2 className="text-[48px] font-semibold mb-4">Save a life today</h2>
         <p className="mb-6">
           Since February 24, 2022, <strong>there hasn't been a single day without deaths and casualties</strong> in Ukraine.
         </p>
