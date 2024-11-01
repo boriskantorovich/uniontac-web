@@ -20,7 +20,7 @@ export default function LocalePage() {
 	const videoContainer1Ref = useRef<HTMLDivElement>(null)
 	const videoContainer2Ref = useRef<HTMLDivElement>(null)
   
-	const urgentCtaText = `To provide emergency&nbsp;assistance and&nbsp;save&nbsp;lives,<br />
+	const urgentCtaText = `To provide emergency assistance and&nbsp;save&nbsp;lives,<br />
 	  we&nbsp;need your&nbsp;support
 	  <br /><br />Even&nbsp;$15 can save&nbsp;a&nbsp;life`;
   
@@ -173,7 +173,7 @@ export default function LocalePage() {
 			  </div>
 			</div>
 			
-			<div>
+			<div id="donate-form-2">
 			  <DonationFormWithCta showCTA={true} ctaText={defaultCtaText} />
 			</div>
 		  </div>

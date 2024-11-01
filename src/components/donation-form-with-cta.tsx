@@ -28,16 +28,16 @@ export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormPr
   }
 
   return (
-    <div className="w-full px-0 md:p-6">
-      <div className="flex flex-col md:flex-row gap-8">
-        <div className="md:w-1/2">
+    <div className="w-full">
+      <div className="flex flex-col md:flex-row md:gap-8">
+        <div className="md:w-1/2 px-6 md:px-6 mb-6 md:mb-0">
           {showCTA && ctaText && (
-            <h2 className="text-[48px] font-semibold text-left text-white mb-4 px-6 md:px-0" dangerouslySetInnerHTML={{ __html: ctaText }}></h2>
+            <h2 className="text-[48px] font-semibold text-left text-white" dangerouslySetInnerHTML={{ __html: ctaText }}></h2>
           )}
         </div>
         
         <div className="md:w-1/2">
-          <div className="bg-blue-600 text-lg text-white p-8">
+          <div className="bg-blue-600 text-white px-6 py-8 md:p-8">
             <h2 className="text-[48px] font-semibold mb-4">Save a life today</h2>
             <p className="mb-6">
               Since February 24, 2022, <strong>there hasn't been a single day without deaths and casualties</strong> in Ukraine.

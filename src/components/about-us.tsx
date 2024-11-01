@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { scrollHandlers } from "@/utils/scroll-handlers"
 
 export function AboutUsComponent() {
   return (
@@ -39,8 +40,11 @@ export function AboutUsComponent() {
                 <p className="text-white text-lg">
                   Help now to support those who hold the front for us – each first aid kit becomes a symbol of gratitude and care for those who bear the burden of protecting our freedom.
                 </p>
-                <Button className="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-semibold py-6 text-xl">
-                  PAY FOR AID KIT
+                <Button 
+                  onClick={() => scrollHandlers.handleDonateClick2()}
+                  className="w-full bg-white text-blue-600 hover:bg-blue-100 font-semibold py-10 text-3xl"
+                >
+                  Save a life today
                 </Button>
               </div>
             </div>

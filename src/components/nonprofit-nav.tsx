@@ -3,18 +3,12 @@
 import React from 'react';
 import { useRouter, usePathname } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
+import { scrollHandlers } from "@/utils/scroll-handlers"
 
 export function NonprofitNavComponent() {
   const t = useTranslations('nav');
   const router = useRouter();
   const pathname = usePathname();
-
-  const handleDonateClick = () => {
-    const donateSection = document.getElementById('donate-form');
-    if (donateSection) {
-      donateSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const handleLanguageChange = (locale: string) => {
     router.replace(pathname, {locale});
@@ -42,7 +36,7 @@ export function NonprofitNavComponent() {
               ))}
             </div>
             <button 
-              onClick={handleDonateClick}
+              onClick={() => scrollHandlers.handleDonateClick()}
               className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-full transition duration-300 text-base md:text-lg cursor-pointer"
             >
               {t('help')}
