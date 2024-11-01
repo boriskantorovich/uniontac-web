@@ -5,13 +5,16 @@ import { Send } from 'lucide-react'
 import Link from 'next/link'
 import { analytics } from '@/utils/analytics'
 import { Card, CardContent } from "@/components/ui/card"
+import { useTranslations } from 'next-intl'
 
 export function FooterComponent() {
+  const t = useTranslations('footer.menu')
+  
   const menuItems = [
-    { name: "How to help", href: "/how-to-help" },
-    { name: "Get help", href: "/get-help" },
-    { name: "About us", href: "/about" },
-    { name: "Reports", href: "/reports" },
+    { name: t('howToHelp'), href: "/how-to-help" },
+    { name: t('getHelp'), href: "/get-help" },
+    { name: t('aboutUs'), href: "/about" },
+    { name: t('reports'), href: "/reports" },
   ]
 
   const handleSocialLinkClick = (platform: string) => {

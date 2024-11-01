@@ -89,5 +89,13 @@
       "urgent": "To provide emergency assistance and save lives,<br />we need your support<br /><br />Even $15 can save a life",
       "default": "Don't pass by those who<br />desperately need help"
     }
+  },
+  "footer": {
+    "menu": {
+      "howToHelp": "How to help",
+      "getHelp": "Get help",
+      "aboutUs": "About us",
+      "reports": "Reports"
+    }
   }
 } 
