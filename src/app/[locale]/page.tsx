@@ -28,13 +28,6 @@ export default function LocalePage() {
 			</div>
 	
 			<StatisticsComponent />
-			<div className="container mx-auto py-8">
-				<VideoTestimonial
-				publicId="uniontac/IMG_6015_apnanb"  // Get this from Cloudinary
-				fallbackImage="/images/thumbnail.jpg"    // Your thumbnail image
-				title="Cheshire"             // Your video title
-			/>
-			</div>
 			<HowWeHelpComponent />
 			<AboutUsComponent />
 			
