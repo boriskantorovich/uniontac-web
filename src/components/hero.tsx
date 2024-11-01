@@ -27,7 +27,7 @@ export function HeroComponent() {
             Send a first aid kit<br /> to those fighting for freedom
           </p>
         </div>
-        <div className="flex flex-col md:flex-row items-start gap-4 mb-8 md:items-center">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-4 mb-2 md:items-center">
           <button 
             className="w-full md:w-[400px] bg-blue-600 hover:bg-blue-700 text-white font-semibold py-8 rounded-lg text-3xl transition duration-300"
             onClick={() => scrollHandlers.handleDonateClick()}
@@ -36,7 +36,7 @@ export function HeroComponent() {
           </button>
           <Link 
             href="#learn-more" 
-            className="text-2xl underline md:ml-8" 
+            className="text-2xl underline text-center w-full md:text-left md:w-auto md:ml-8" 
             onClick={scrollHandlers.handleLearnMoreClick}
           >
             Learn More
