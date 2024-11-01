@@ -6,7 +6,7 @@ import Image from 'next/image'
 export function CtaComponent() {
   return (
     <div className="w-full">
-      <Card className="bg-gray-900 text-white p-6 rounded-3xl border-0 ring-0 ring-offset-0 shadow-none">
+      <Card className="bg-gray-900 text-white p-6 border-0 ring-0 ring-offset-0 shadow-none">
         <CardHeader>
           <CardTitle className="text-[48px] font-semibold text-left mb-2">
             They can't wait—act now

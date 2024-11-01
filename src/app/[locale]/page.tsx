@@ -20,14 +20,12 @@ export default function LocalePage() {
 	const videoContainer1Ref = useRef<HTMLDivElement>(null)
 	const videoContainer2Ref = useRef<HTMLDivElement>(null)
   
-	const urgentCtaText = `TO PROVIDE EMERGENCY ASSISTANCE<br />
-	  AND SAVE LIVES,<br />
-	  WE NEED YOUR SUPPORT
-	  <br /> <br /> EVEN $15 <br />CAN CHANGE SOMEONE'S LIFE`;
+	const urgentCtaText = `To provide emergency&nbsp;assistance and&nbsp;save&nbsp;lives,<br />
+	  we&nbsp;need your&nbsp;support
+	  <br /><br />Even&nbsp;$15 can save&nbsp;a&nbsp;life`;
   
-	const defaultCtaText = `DON'T PASS BY THOSE WHO<br />
-	  DESPERATELY NEED<br />
-	  HELP`;
+	const defaultCtaText = `Don't pass by those who<br />
+	  desperately need&nbsp;help`;
   
 	const handleVideoPlayPause1 = (index: number) => {
 	  setPlayingVideo1(prevPlayingVideo => prevPlayingVideo === index ? null : index)

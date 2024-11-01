@@ -6,7 +6,7 @@ import Image from 'next/image'
 export function MedkitComponent() {
   return (
     <div className="w-full">
-      <Card className="bg-yellow-400 p-6 rounded-3xl border-0 ring-0 ring-offset-0 shadow-none">
+      <Card className="bg-yellow-400 p-6 border-0 ring-0 ring-offset-0 shadow-none">
         <CardHeader>
           <CardTitle className="text-[48px] font-semibold text-left text-blue-600">
             How the first-aid kit works
@@ -14,22 +14,24 @@ export function MedkitComponent() {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col md:flex-row gap-8">
-            <div className="md:order-2 md:w-1/2 space-y-4">
-              <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
-                <Image
-                  src="/images/medkit/medkit1.jpg"
-                  alt="Medkit Image 1"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
-                <Image
-                  src="/images/medkit/medkit2.jpg"
-                  alt="Medkit Image 2"
-                  fill
-                  className="object-cover"
-                />
+            <div className="md:order-2 md:w-1/2">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="relative w-full md:w-1/2 h-64 md:h-80 rounded-lg overflow-hidden">
+                  <Image
+                    src="/images/medkit/medkit1.jpg"
+                    alt="Medkit Image 1"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative w-full md:w-1/2 h-64 md:h-80 rounded-lg overflow-hidden">
+                  <Image
+                    src="/images/medkit/medkit2.jpg"
+                    alt="Medkit Image 2"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
             </div>
             <div className="md:order-1 md:w-1/2">
