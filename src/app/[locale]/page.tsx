@@ -13,12 +13,6 @@ import { FooterComponent } from "@/components/footer";
 import { VideoTestimonial } from '@/components/video-testimonial-player';
 
 export default function LocalePage() {
-	const urgentCtaText = `To provide emergency assistance and&nbsp;save&nbsp;lives,<br />
-	  we&nbsp;need your&nbsp;support
-	  <br /><br />Even&nbsp;$15 can save&nbsp;a&nbsp;life`;
-  
-	const defaultCtaText = `Don't pass by those who<br />
-	  desperately need&nbsp;help`;
 
   return (
 		<>
@@ -30,7 +24,7 @@ export default function LocalePage() {
 			<MedkitComponent />
 			
 			<div id="donate-form">
-			  <DonationFormWithCta showCTA={true} ctaText={urgentCtaText} />
+			  <DonationFormWithCta showCTA={true} variant="urgent" />
 			</div>
 	
 			<StatisticsComponent />
@@ -45,7 +39,7 @@ export default function LocalePage() {
 			<AboutUsComponent />
 			
 			<div id="donate-form-2">
-			  <DonationFormWithCta showCTA={true} ctaText={defaultCtaText} />
+			  <DonationFormWithCta showCTA={true} variant="default" />
 			</div>
 		  </div>
 		  

@@ -2,14 +2,17 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 export function CtaComponent() {
+  const t = useTranslations('cta')
+
   return (
     <div className="w-full">
       <Card className="bg-gray-900 text-white p-6 border-0 ring-0 ring-offset-0 shadow-none">
         <CardHeader>
           <CardTitle className="text-[48px] font-semibold text-left mb-2">
-            They can't wait—act now
+            {t('title')}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -18,7 +21,7 @@ export function CtaComponent() {
               <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
                 <Image
                   src="/images/cta/cta.jpg"
-                  alt="CTA Image 1"
+                  alt={t('title')}
                   fill
                   className="object-cover"
                 />
@@ -26,18 +29,10 @@ export function CtaComponent() {
             </div>
             <div className="md:order-1 md:w-1/2">
               <div className="space-y-4">
-                <p className="text-white text-lg">
-                  Every day, Russia shells Ukrainians with all possible weapons: drones, artillery, bombs and rockets, bringing death to ordinary people—women and children.
-                </p>
-                <p className="text-white text-lg">
-                  Those on the frontline are losing their lives to protect their families, homes, freedom, and justice.
-                </p>
-                <p className="text-white text-lg">
-                  For over a year, Uniontac has been providing vital support to Ukraine—medkits that save lives in critical moments.
-                </p>
-                <p className="text-white text-lg">
-                  One first aid kit can save two lives, increasing the chances of survival and allowing evacuation from the combat zone.
-                </p>
+                <p className="text-white text-lg">{t('paragraph1')}</p>
+                <p className="text-white text-lg">{t('paragraph2')}</p>
+                <p className="text-white text-lg">{t('paragraph3')}</p>
+                <p className="text-white text-lg">{t('paragraph4')}</p>
               </div>
             </div>
           </div>

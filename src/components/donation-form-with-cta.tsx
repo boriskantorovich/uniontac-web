@@ -4,10 +4,11 @@ import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
+import { useTranslations } from 'next-intl'
 
 interface DonationFormProps {
   showCTA?: boolean;
-  ctaText?: string;
+  variant?: 'urgent' | 'default';
 }
 
 const paymentLinks = {
@@ -16,8 +17,14 @@ const paymentLinks = {
   '25': 'https://buy.stripe.com/8wMcNMaKl0Rx5OgdQT'
 };
 
-export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormProps) {
+export function DonationFormWithCta({ 
+  showCTA = false, 
+  variant = 'default' 
+}: DonationFormProps) {
+  const t = useTranslations('donationForm')
   const [amount, setAmount] = useState<string>('15')
+
+  const ctaText = t(`ctaTexts.${variant}`)
 
   const handleAmountClick = (value: string) => {
     setAmount(value)
@@ -32,17 +39,22 @@ export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormPr
       <div className="flex flex-col md:flex-row md:gap-8">
         <div className="md:w-1/2 px-6 md:px-6 mb-6 md:mb-0">
           {showCTA && ctaText && (
-            <h2 className="text-[48px] font-semibold text-left text-white" dangerouslySetInnerHTML={{ __html: ctaText }}></h2>
+            <h2 
+              className="text-[48px] font-semibold text-left text-white"
+              dangerouslySetInnerHTML={{ __html: ctaText }}
+            />
           )}
         </div>
         
         <div className="md:w-1/2">
           <div className="bg-blue-600 text-white px-6 py-8 md:p-8">
-            <h2 className="text-[48px] font-semibold mb-4">Save a life today</h2>
+            <h2 className="text-[48px] font-semibold mb-4">{t('title')}</h2>
             <p className="mb-6">
-              Since February 24, 2022, <strong>there hasn't been a single day without deaths and casualties</strong> in Ukraine.
+              {t.rich('description.text', {
+                span: (chunks) => <strong>{chunks}</strong>
+              })}
             </p>
-            <p className="text-xl mb-8">Subscribe to monthly support</p>
+            <p className="text-xl mb-8">{t('monthlySupport')}</p>
             
             <form onSubmit={(e) => { e.preventDefault(); handleDonateClick(); }} className="space-y-6 mb-8">
               <RadioGroup
@@ -73,12 +85,12 @@ export function DonationFormWithCta({ showCTA = false, ctaText }: DonationFormPr
                 type="submit"
                 className="w-full bg-white text-blue-600 hover:bg-blue-100 font-semibold py-10 text-3xl"
               >
-                Help Now!
+                {t('helpButton')}
               </Button>
             </form>
             
             <p className="mt-4 text-sm text-blue-100">
-              By clicking the button, you agree to the terms of data processing and confirm a voluntary donation to Uniontac (the text is shorter and all legalities are taken to links)
+              {t('legalText')}
             </p>
           </div>
         </div>
