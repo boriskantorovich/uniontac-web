@@ -6,18 +6,18 @@ import Image from 'next/image'
 export function MedkitComponent() {
   return (
     <div className="w-full">
-      <Card className="bg-yellow-400 p-8 rounded-3xl border-0 ring-0 ring-offset-0 shadow-none">
-        <CardHeader className="p-0 mb-6">
+      <Card className="bg-yellow-400 p-6 rounded-3xl border-0 ring-0 ring-offset-0 shadow-none">
+        <CardHeader>
           <CardTitle className="text-[48px] font-semibold text-left text-blue-600">
             How the first-aid kit works
           </CardTitle>
         </CardHeader>
-        <CardContent className="p-0">
+        <CardContent>
           <div className="flex flex-col md:flex-row gap-8">
             <div className="md:order-2 md:w-1/2 space-y-4">
               <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
                 <Image
-                  src="/images/medkit1.jpg"
+                  src="/images/medkit/medkit1.jpg"
                   alt="Medkit Image 1"
                   fill
                   className="object-cover"
@@ -25,7 +25,7 @@ export function MedkitComponent() {
               </div>
               <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
                 <Image
-                  src="/images/medkit2.jpg"
+                  src="/images/medkit/medkit2.jpg"
                   alt="Medkit Image 2"
                   fill
                   className="object-cover"

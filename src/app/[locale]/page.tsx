@@ -58,11 +58,10 @@ export default function LocalePage() {
   return (
 		<>
 		  <HeroComponent />
-		  <div className="max-w-5xl mx-auto">
+		  <div className="mx-auto">
 			<div id="learn-more">
 			  <CtaComponent />
 			</div>
-	
 			<MedkitComponent />
 			
 			<div id="donate-form">
