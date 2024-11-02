@@ -24,7 +24,7 @@ export function FooterComponent() {
   return (
     <footer className="w-full">
       <Card className="bg-black/90 backdrop-blur-sm border-0 ring-0 ring-offset-0 shadow-none">
-        <CardContent className="px-6 py-2">
+        <CardContent className="px-6 md:px-20 py-2">
           <div className="flex flex-col md:flex-row justify-between items-center mb-4">
             <div className="flex flex-wrap justify-center md:justify-start gap-6 mb-4 md:mb-0">
               {menuItems.map((item) => (

@@ -86,8 +86,8 @@
     "helpButton": "Help Now!",
     "legalText": "By clicking the button, you agree to the terms of data processing and confirm a voluntary donation to Uniontac (the text is shorter and all legalities are taken to links)",
     "ctaTexts": {
-      "urgent": "To provide emergency assistance and save lives,<br />we need your support<br /><br />Even $15 can save a life",
-      "default": "Don't pass by those who<br />desperately need help"
+      "urgent": "To provide emergency assistance and save lives, we need your support<br /><br />Even $15 can save a life",
+      "default": "Don't pass by those who desperately need help"
     }
   },
   "footer": {

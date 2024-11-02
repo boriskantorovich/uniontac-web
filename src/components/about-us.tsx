@@ -12,7 +12,7 @@ export function AboutUsComponent() {
 
   return (
     <div className="w-full">
-      <Card className="bg-gray-900 text-white p-6 border-0 ring-0 ring-offset-0 shadow-none">
+      <Card className="bg-gray-900 text-white p-6 md:p-20 border-0 ring-0 ring-offset-0 shadow-none">
         <CardHeader>
           <CardTitle className="text-[48px] font-semibold text-left mb-2">
             {t.rich('title', {

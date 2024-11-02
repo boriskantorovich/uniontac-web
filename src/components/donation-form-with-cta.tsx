@@ -35,18 +35,18 @@ export function DonationFormWithCta({
   }
 
   return (
-    <div className="w-full pt-14 pb-14">
-      <div className="flex flex-col md:flex-row md:gap-8">
-        <div className="md:w-1/2 px-6 md:px-6 mb-6 md:mb-0">
-          {showCTA && ctaText && (
+    <div className="w-full pt-6 md:p-6">
+      <div className="flex flex-col max-w-[800px] mx-auto">
+        {showCTA && ctaText && (
+          <div className="m-8 text-left">
             <h2 
-              className="text-[48px] font-semibold text-left text-white"
+              className="text-3xl font-semibold text-white"
               dangerouslySetInnerHTML={{ __html: ctaText }}
             />
-          )}
-        </div>
+          </div>
+        )}
         
-        <div className="md:w-1/2">
+        <div className="w-full">
           <div className="bg-blue-600 text-white px-6 py-8 md:p-8">
             <h2 className="text-[48px] font-semibold mb-4">{t('title')}</h2>
             <p className="mb-6">

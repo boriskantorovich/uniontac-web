@@ -9,7 +9,7 @@ export function StatisticsComponent() {
 
   return (
     <div className="w-full">
-      <Card className="bg-gray-900 text-white p-6">
+      <Card className="bg-gray-900 text-white p-6 md:p-20">
         <CardHeader>
           <CardTitle className="text-[48px] font-semibold text-left mb-2">
             {t('title')}

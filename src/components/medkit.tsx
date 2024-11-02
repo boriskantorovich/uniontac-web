@@ -9,7 +9,7 @@ export function MedkitComponent() {
 
   return (
     <div className="w-full">
-      <Card className="bg-gradient-to-r from-yellow-300 to-blue-300 p-6 border-0 ring-0 ring-offset-0 shadow-none">
+      <Card className="bg-gradient-to-r from-yellow-300 to-blue-300 p-6 md:p-20 border-0 ring-0 ring-offset-0 shadow-none">
         <CardHeader>
           <CardTitle className="text-[48px] font-semibold text-left text-black">
             {t('title')}
