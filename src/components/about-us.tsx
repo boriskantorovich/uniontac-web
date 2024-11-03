@@ -34,9 +34,8 @@ export function AboutUsComponent() {
             </div>
             <div className="md:order-1 md:w-1/2">
               <div className="space-y-4">
-                <p className="text-white text-lg">{t('paragraph1')}</p>
-                <p className="text-white text-lg">{t('paragraph2')}</p>
-                <p className="text-white text-lg">{t('paragraph3')}</p>
+                <p className="text-white text-xl">{t('paragraph1')}</p>
+                <p className="text-white text-xl">{t('paragraph2')}</p>
                 <Button 
                   onClick={() => scrollHandlers.handleDonateClick2()}
                   className="w-full bg-white text-blue-600 hover:bg-blue-100 font-semibold py-10 text-3xl"

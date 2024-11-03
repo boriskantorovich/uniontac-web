@@ -38,7 +38,7 @@ export function MedkitComponent() {
               </div>
             </div>
             <div className="md:order-1 md:w-1/2">
-              <div className="space-y-4 text-lg text-black font-semibold">
+              <div className="space-y-4 text-xl text-black font-semibold">
                 <p>{t('description1')}</p>
                 <p>{t('description2')}</p>
               </div>

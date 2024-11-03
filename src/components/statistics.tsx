@@ -14,12 +14,12 @@ export function StatisticsComponent() {
           <CardTitle className="text-[48px] font-semibold text-left mb-2">
             {t('title')}
           </CardTitle>
-          <p className="text-white text-left text-lg sm:text-xl">
+          <p className="text-white text-left text-xl">
             {t('subtitle')}
           </p>
         </CardHeader>
         <CardContent className="grid gap-8 md:grid-cols-3">
-          <StatItem 
+          <StatItemWithDescription 
             value={t('medkits.value')}
             title={t('medkits.title')}
             namespace="medkits"
@@ -27,12 +27,10 @@ export function StatisticsComponent() {
           <StatItem 
             value={t('volunteers.value')}
             title={t('volunteers.title')}
-            namespace="volunteers"
           />
           <StatItem 
             value={t('brigades.value')}
             title={t('brigades.title')}
-            namespace="brigades"
           />
         </CardContent>
       </Card>
@@ -40,10 +38,24 @@ export function StatisticsComponent() {
   )
 }
 
-function StatItem({ value, title, namespace }: { 
+function StatItem({ value, title }: { 
+  value: string, 
+  title: string
+}) {
+  return (
+    <div className="space-y-2">
+      <h3 className="text-[48px] font-semibold bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-300 text-transparent bg-clip-text">
+        {value}
+      </h3>
+      <h4 className="text-2xl font-semibold">{title}</h4>
+    </div>
+  )
+}
+
+function StatItemWithDescription({ value, title, namespace }: { 
   value: string, 
   title: string,
-  namespace: 'medkits' | 'volunteers' | 'brigades' 
+  namespace: 'medkits'
 }) {
   const t = useTranslations(`statistics.${namespace}`)
 

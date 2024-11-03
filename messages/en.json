@@ -4,8 +4,8 @@
     "brand": "UNIONTAC"
   },
   "hero": {
-    "title": "Save a&nbsp;life<br />now",
-    "subtitle": "Send a first aid kit<br /> to those fighting for freedom",
+    "title": "Save people<br />fighting for peace",
+    "subtitle": "First aid kits for medics, evacuation teams, volunteers, and the&nbsp;military",
     "helpButton": "Help Now!",
     "learnMore": "Learn More"
   },
@@ -14,65 +14,57 @@
     "steps": [
       {
         "title": "You make a donation",
-        "description": "The cost of one first aid kit is $80.\n\nThis is the price of saving lives and preventing irreversible harm.\n\nThe kit is crucial in the \"golden hour\"—the first hour after injury, when quick medical help significantly increases survival chances."
+        "description": "The cost of one first aid kit is $80."
       },
       {
         "title": "We order medkits",
-        "description": "UNIONTAC works with trusted Ukrainian manufacturers.\n\nOnce we place the order, they quickly deliver the medical kits to us.\n\nOur volunteers then handle the delivery."
+        "description": "UNIONTAC works with trusted Ukrainian manufacturers, and all the medkits are assembled in Kyiv."
+      },
+      {
+        "title": "We deliver medkits directly to the frontline",
+        "description": "Our volunteers deliver these life-saving supplies without delay, despite the daily shelling and threats."
       },
       {
         "title": "Medkits save lives",
-        "description": "Our volunteers deliver these life-saving supplies without delay, despite the daily shelling and threats.\n\nWe ensure the kits reach people on the frontlines—civilians, medics, and defenders—providing exactly what they need to save lives."
-      },
-      {
-        "title": "Continuous Support",
-        "description": "Our dedicated team monitors the distribution and impact of each medical kit.\n\nWe maintain constant communication with field units to understand evolving needs.\n\nThis feedback helps us improve and adapt our support to maximize effectiveness."
+        "description": "Our dedicated team monitors the distribution and impact of each medical kit. We maintain constant communication with field units to understand their evolving needs."
       }
     ]
   },
   "medkit": {
-    "title": "How the first-aid kit works",
-    "description1": "Our first-aid kit is designed for immediate response to trauma and emergency situations. Each component is carefully selected and arranged for quick access, allowing responders to provide critical care in the crucial first minutes after an injury. The kit includes essential items for controlling bleeding, managing airways, and treating various trauma conditions.",
-    "description2": "The compact and durable design ensures that all life-saving equipment stays protected and organized. Color-coded sections and clear labeling make it easy to locate specific items under pressure, while the water-resistant exterior protects the contents in any environment. This kit meets international emergency medical standards and is regularly updated based on field experience and medical advances."
+    "title": "First aid kits save lives",
+    "description1": "First aid kits are one of the most sought-after and essential supplies in the war zone.",
+    "description2": "One first aid kit can save two lives, increasing the chances of survival and allowing evacuation from the combat zone."
   },
   "cta": {
-    "title": "They can't wait—act now",
-    "paragraph1": "Every day, Russia shells Ukrainians with all possible weapons: drones, artillery, bombs and rockets, bringing death to ordinary people—women and children.",
-    "paragraph2": "Those on the frontline are losing their lives to protect their families, homes, freedom, and justice.",
-    "paragraph3": "For over a year, Uniontac has been providing vital support to Ukraine—medkits that save lives in critical moments.",
-    "paragraph4": "One first aid kit can save two lives, increasing the chances of survival and allowing evacuation from the combat zone."
+    "title": "Mad war continues",
+    "paragraph1": "Drones, bombs, missiles, and artillery are killing people, sparing neither women nor children.",
+    "paragraph2": "Those on the front lines are giving their lives to protect their families, homes, freedom and justice. And they need our help.",
+    "paragraph3": "For a year now, we have been providing life-saving first aid kits."
   },
   "statistics": {
-    "title": "What we have done together",
-    "subtitle": "War doesn't stop so we work daily.",
+    "title": "UNIONTAC in numbers",
+    "subtitle": "War doesn't stop, so we work 24/7",
     "medkits": {
       "value": ">500",
       "title": "Medical kits delivered",
       "description": {
-        "text": "That's more than <span>1000</span> lives saved.",
+        "text": "That's more than <span>1000</span> lives saved",
         "highlight": "1000"
       }
     },
     "volunteers": {
-      "value": ">100",
-      "title": "Volunteers help us",
-      "description": {
-        "text": "Delivered medical supplies to the frontline faster than light."
-      }
+      "value": ">50",
+      "title": "Volunteers working"
     },
     "brigades": {
       "value": ">53",
-      "title": "Brigades and volunteer groups supported",
-      "description": {
-        "text": "We've delivered critical aid to 15 brigades, ensuring they have the medical supplies they need to save lives."
-      }
+      "title": "Brigades and volunteer groups supported with first-aid kits"
     }
   },
   "aboutUs": {
     "title": "We are <span>Sveta, Kira, and >100 volunteers</span>",
-    "paragraph1": "Our mission is to provide them with the necessary first aid kits so they can face the challenges of each day.",
+    "paragraph1": "Sveta is from Crimea, and Kira is from Kharkiv. Since the first day of the full-scale invasion, we have been helping refugees, volunteers, medics, and military personnel. A year ago, we opened our own foundation, UNIONTAC, and we supply first aid kits directly to the front.",
     "paragraph2": "For the military, there are no weekends, holidays, or the possibility to \"leave\" the front. The enemy doesn't know the word \"rest,\" and every day, our warriors stand at the forefront, at the cost of their health and lives.",
-    "paragraph3": "Help now to support those who hold the front for us – each first aid kit becomes a symbol of gratitude and care for those who bear the burden of protecting our freedom.",
     "imageAlt": "Sveta and Kira",
     "ctaButton": "Save a life today"
   },
@@ -84,9 +76,9 @@
     },
     "monthlySupport": "Subscribe to monthly support",
     "helpButton": "Help Now!",
-    "legalText": "By clicking the button, you agree to the terms of data processing and confirm a voluntary donation to Uniontac (the text is shorter and all legalities are taken to links)",
+    "legalText": "By clicking the button, you agree to the terms of data processing and confirm a voluntary donation to UNIONTAC.",
     "ctaTexts": {
-      "urgent": "To provide emergency assistance and save lives, we need your support<br /><br />Even $15 can save a life",
+      "urgent": "People fighting for&nbsp;peace need your&nbsp;support<br /><br />Even $15 can save a&nbsp;life",
       "default": "Don't pass by those who desperately need help"
     }
   },

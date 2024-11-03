@@ -21,18 +21,19 @@ export function HeroComponent() {
       />
       <div className="absolute inset-0 bg-black/40" /> 
       
-      <div className="w-full p-6 md:p-20 relative z-10 flex flex-col justify-between h-full py-12 md:py-24">
-        <div className="text-left">
+      <div className="w-full p-6 md:p-20 relative z-10 flex flex-col h-full">
+        <div className="flex-grow" />
+        <div className="text-left mb-6">
           <h1 
-            className="text-8xl md:text-8xl lg:text-[10rem] font-bold mb-8 leading-[0.9]"
+            className="text-5xl md:text-6xl lg:text-8xl font-bold mb-4 leading-none"
             dangerouslySetInnerHTML={{ __html: t('title') }}
           />
           <p 
-            className="text-3xl mb-16 md:mb-24 font-semibold"
+            className="md:text-3xl text-2xl mb-2 md:mb-4 font-semibold max-w-[700px]"
             dangerouslySetInnerHTML={{ __html: t('subtitle') }}
           />
         </div>
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-4 mb-2 md:items-center">
+        <div className="flex flex-col md:flex-row items-center gap-4">
           <button 
             className="w-full md:w-[400px] bg-blue-600 hover:bg-blue-700 text-white font-semibold py-8 rounded-lg text-3xl transition duration-300"
             onClick={() => scrollHandlers.handleDonateClick()}

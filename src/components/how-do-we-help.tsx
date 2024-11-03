@@ -26,7 +26,7 @@ export function HowWeHelpComponent() {
                 <h3 className="text-2xl font-bold mb-2 text-black">
                   {t(`steps.${index}.title`)}
                 </h3>
-                <p className="text-lg font-semibold text-black whitespace-pre-line">
+                <p className="text-xl font-semibold text-black whitespace-pre-line">
                   {t(`steps.${index}.description`)}
                 </p>
               </div>
