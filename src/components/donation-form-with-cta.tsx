@@ -48,7 +48,7 @@ export function DonationFormWithCta({
         
         <div className="w-full">
           <div className="bg-blue-600 text-white px-6 py-8 md:p-8">
-            <h2 className="text-[48px] font-semibold mb-4">{t('title')}</h2>
+            <h2 className="text-[46px] leading-tight font-semibold mb-4">{t('title')}</h2>
             <p className="mb-6">
               {t.rich('description.text', {
                 span: (chunks) => <strong>{chunks}</strong>

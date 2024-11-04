@@ -11,7 +11,7 @@ export function StatisticsComponent() {
     <div className="w-full">
       <Card className="bg-gray-900 text-white p-6 md:p-20">
         <CardHeader>
-          <CardTitle className="text-[48px] font-semibold text-left mb-2">
+          <CardTitle className="text-[46px] pt-6 mb:pt-0 leading-tight font-semibold text-left mb-2">
             {t('title')}
           </CardTitle>
           <p className="text-white text-left text-xl">
@@ -44,7 +44,7 @@ function StatItem({ value, title }: {
 }) {
   return (
     <div className="space-y-2">
-      <h3 className="text-[48px] font-semibold bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-300 text-transparent bg-clip-text">
+      <h3 className="text-[46px] leading-tight font-semibold bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-300 text-transparent bg-clip-text">
         {value}
       </h3>
       <h4 className="text-2xl font-semibold">{title}</h4>
@@ -61,14 +61,14 @@ function StatItemWithDescription({ value, title, namespace }: {
 
   return (
     <div className="space-y-2">
-      <h3 className="text-[48px] font-semibold bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-300 text-transparent bg-clip-text">
+      <h3 className="text-[46px] font-semibold bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-300 text-transparent bg-clip-text">
         {value}
       </h3>
       <h4 className="text-xl sm:text-2xl font-semibold">{title}</h4>
       <p className="text-white">
-        {t.rich('description.text', {
-          span: (chunks) => <Highlight>{chunks}</Highlight>
-        })}
+        {t('description.prefix')}
+        <Highlight>{t('description.highlight')}</Highlight>
+        {t('description.postfix')}
       </p>
     </div>
   )

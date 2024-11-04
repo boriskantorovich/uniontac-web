@@ -14,10 +14,9 @@ export function AboutUsComponent() {
     <div className="w-full">
       <Card className="bg-gray-900 text-white p-6 md:p-20 border-0 ring-0 ring-offset-0 shadow-none">
         <CardHeader>
-          <CardTitle className="text-[48px] font-semibold text-left mb-2">
-            {t.rich('title', {
-              span: (chunks) => <Highlight>{chunks}</Highlight>
-            })}
+          <CardTitle className="text-[46px] pt-6 mb:pt-0 leading-tight font-semibold text-left mb-2">
+            {t('title.prefix')}
+            <Highlight>{t('title.highlight')}</Highlight>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -34,8 +33,12 @@ export function AboutUsComponent() {
             </div>
             <div className="md:order-1 md:w-1/2">
               <div className="space-y-4">
-                <p className="text-white text-xl">{t('paragraph1')}</p>
-                <p className="text-white text-xl">{t('paragraph2')}</p>
+                <p className="text-white text-xl">
+                  {t('paragraph1')}
+                </p>
+                <p className="text-white text-xl">
+                  {t('paragraph2')}
+                </p>
                 <Button 
                   onClick={() => scrollHandlers.handleDonateClick2()}
                   className="w-full bg-white text-blue-600 hover:bg-blue-100 font-semibold py-10 text-3xl"
