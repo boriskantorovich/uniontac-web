@@ -24,14 +24,12 @@ export function HeroComponent() {
       <div className="w-full p-6 md:p-20 relative z-10 flex flex-col h-full">
         <div className="flex-grow" />
         <div className="text-left mb-6 max-w-[700px]">
-          <h1 
-            className="text-5xl md:text-6xl lg:text-8xl font-bold mb-4 leading-none"
-            dangerouslySetInnerHTML={{ __html: t('title') }}
-          />
-          <p 
-            className="md:text-3xl text-2xl mb-2 md:mb-4 font-semibold"
-            dangerouslySetInnerHTML={{ __html: t('subtitle') }}
-          />
+          <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold mb-4 leading-none">
+            {t('title')}
+          </h1>
+          <p className="md:text-3xl text-2xl mb-2 md:mb-4 font-semibold">
+            {t('subtitle')}
+          </p>
         </div>
         <div className="flex flex-col md:flex-row items-center gap-4">
           <button 

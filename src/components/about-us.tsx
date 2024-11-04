@@ -14,7 +14,7 @@ export function AboutUsComponent() {
     <div className="w-full">
       <Card className="bg-gray-900 text-white p-6 md:p-20 border-0 ring-0 ring-offset-0 shadow-none">
         <CardHeader>
-          <CardTitle className="text-[46px] pt-6 mb:pt-0 leading-tight font-semibold text-left mb-2">
+          <CardTitle className="text-4xl md:text-5xl pt-6 mb:pt-0 leading-tight font-semibold text-left mb-2">
             {t('title.prefix')}
             <Highlight>{t('title.highlight')}</Highlight>
           </CardTitle>

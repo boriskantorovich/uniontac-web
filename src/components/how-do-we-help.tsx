@@ -11,7 +11,7 @@ export function HowWeHelpComponent() {
     <div className="w-full">
       <Card className="bg-gradient-to-r from-yellow-300 to-blue-300 p-6 md:p-20 border-0 ring-0 ring-offset-0 shadow-none">
         <CardHeader className="p-0 mb-6">
-          <CardTitle className="text-[46px] pt-6 mb:pt-0 leading-tight font-semibold text-left text-black">
+          <CardTitle className="text-4xl md:text-5xl pt-6 mb:pt-0 leading-tight font-semibold text-left text-black">
             {t('title')}
           </CardTitle>
         </CardHeader>

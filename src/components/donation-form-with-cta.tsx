@@ -39,20 +39,19 @@ export function DonationFormWithCta({
       <div className="flex flex-col max-w-[800px] mx-auto">
         {showCTA && ctaText && (
           <div className="m-8 text-left">
-            <h2 
-              className="text-3xl font-semibold text-white"
-              dangerouslySetInnerHTML={{ __html: ctaText }}
-            />
+            <h2 className="text-3xl font-semibold text-white whitespace-pre-line">
+              {ctaText}
+            </h2>
           </div>
         )}
         
         <div className="w-full">
           <div className="bg-blue-600 text-white px-6 py-8 md:p-8">
-            <h2 className="text-[46px] leading-tight font-semibold mb-4">{t('title')}</h2>
+            <h2 className="text-4xl md:text-5xl leading-tight font-semibold mb-4">
+              {t('title')}
+            </h2>
             <p className="mb-6">
-              {t.rich('description.text', {
-                span: (chunks) => <strong>{chunks}</strong>
-              })}
+              {t('description.text')}
             </p>
             <p className="text-xl mb-8">{t('monthlySupport')}</p>
             
