@@ -1,3 +1,5 @@
+'use client';
+
 import { VideoPlayer } from "./video-player";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslations } from 'next-intl';
@@ -9,6 +11,9 @@ interface VideoTestimonialProps {
 
 export function VideoTestimonial({ className = "" }: VideoTestimonialProps) {
   const t = useTranslations('videoTestimonial');
+  
+  // Split the quote by \n\n and map to paragraphs
+  const quoteParagraphs = t('quote').split('\n\n');
 
   return (
     <div className="w-full">
@@ -32,7 +37,11 @@ export function VideoTestimonial({ className = "" }: VideoTestimonialProps) {
             {/* Text Content */}
             <div className="md:w-1/2">
               <div className="space-y-4">
-                <p className="text-white text-xl">{t('quote')}</p>
+                <div className="space-y-4">
+                  {quoteParagraphs.map((paragraph, index) => (
+                    <p key={index} className="text-white text-xl">{paragraph}</p>
+                  ))}
+                </div>
                 <p className="text-white text-lg italic">— {t('author')}</p>
               </div>
             </div>

@@ -8,9 +8,6 @@ export const videos = {
     },
     {
       src: "https://res.cloudinary.com/dtuxt5133/video/upload/q_auto,f_auto/v1/uniontac-testimonials-2",
-    },
-    {
-      src: "https://res.cloudinary.com/dtuxt5133/video/upload/q_auto,f_auto/v1/Uniontac5_oyscus",
     }
   ]
 } as const;

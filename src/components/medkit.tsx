@@ -24,6 +24,7 @@ export function MedkitComponent() {
                     src="/images/medkit/medkit1.jpg"
                     alt={t('title')}
                     fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
                     className="object-cover"
                   />
                 </div>
@@ -32,6 +33,7 @@ export function MedkitComponent() {
                     src="/images/medkit/medkit2.jpg"
                     alt={t('title')}
                     fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
                     className="object-cover"
                   />
                 </div>

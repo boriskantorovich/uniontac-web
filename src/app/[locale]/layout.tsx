@@ -4,6 +4,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import '@/app/globals.css';
+import { VideoProvider } from '@/contexts/video-context';
 
 export default async function LocaleLayout({
   children,
@@ -20,10 +21,12 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <NonprofitNavComponent />
-      <main className="pt-8 font-sans">
-        {children}
-      </main>
+      <VideoProvider>
+        <NonprofitNavComponent />
+        <main className="pt-8 font-sans">
+          {children}
+        </main>
+      </VideoProvider>
     </NextIntlClientProvider>
   );
 }

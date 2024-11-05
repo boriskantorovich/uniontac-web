@@ -27,6 +27,7 @@ export function AboutUsComponent() {
                   src="/images/team/team.jpg"
                   alt={t('imageAlt')}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-top"
                 />
               </div>

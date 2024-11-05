@@ -1,4 +1,6 @@
-import { useState } from 'react';
+'use client';
+
+import { useState, useRef } from 'react';
 import { Play } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
@@ -10,15 +12,22 @@ interface VideoPlayerProps {
 
 export function VideoPlayer({ src, className = "", onPlay }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  const handleVideoClick = () => {
-    if (videoElement) {
-      if (videoElement.paused) {
-        videoElement.play();
-        onPlay?.(videoElement);
-      } else {
-        videoElement.pause();
+  const handleVideoClick = async () => {
+    if (videoRef.current) {
+      try {
+        if (videoRef.current.paused) {
+          if (videoRef.current.ended) {
+            videoRef.current.currentTime = 0;
+          }
+          await videoRef.current.play();
+          onPlay?.(videoRef.current);
+        } else {
+          videoRef.current.pause();
+        }
+      } catch (error) {
+        console.error('Video playback error:', error);
       }
     }
   };
@@ -26,17 +35,21 @@ export function VideoPlayer({ src, className = "", onPlay }: VideoPlayerProps) {
   return (
     <div className={cn("video-container relative w-full h-full", className)}>
       <video
-        ref={setVideoElement}
+        ref={videoRef}
         preload="metadata"
         playsInline
         className="absolute inset-0 w-full h-full object-cover cursor-pointer"
-        onPlay={() => setIsPlaying(true)}
+        onPlay={() => {
+          setIsPlaying(true);
+          if (videoRef.current) {
+            onPlay?.(videoRef.current);
+          }
+        }}
         onPause={() => setIsPlaying(false)}
         onEnded={() => setIsPlaying(false)}
         onClick={handleVideoClick}
       >
-        <source src={`${src}.mp4`} type="video/mp4" />
-        <source src={`${src}.webm`} type="video/webm" />
+        <source src={src} type="video/mp4" />
         Your browser doesn't support HTML5 video.
       </video>
 
