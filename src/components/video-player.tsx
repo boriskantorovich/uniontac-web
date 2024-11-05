@@ -5,9 +5,10 @@ import { cn } from "@/lib/utils";
 interface VideoPlayerProps {
   src: string;
   className?: string;
+  onPlay?: (videoElement: HTMLVideoElement) => void;
 }
 
-export function VideoPlayer({ src, className = "" }: VideoPlayerProps) {
+export function VideoPlayer({ src, className = "", onPlay }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(null);
 
@@ -15,6 +16,7 @@ export function VideoPlayer({ src, className = "" }: VideoPlayerProps) {
     if (videoElement) {
       if (videoElement.paused) {
         videoElement.play();
+        onPlay?.(videoElement);
       } else {
         videoElement.pause();
       }
@@ -33,7 +35,8 @@ export function VideoPlayer({ src, className = "" }: VideoPlayerProps) {
         onEnded={() => setIsPlaying(false)}
         onClick={handleVideoClick}
       >
-        <source src={src} type="video/mp4" />
+        <source src={`${src}.mp4`} type="video/mp4" />
+        <source src={`${src}.webm`} type="video/webm" />
         Your browser doesn't support HTML5 video.
       </video>
 

@@ -1,6 +1,7 @@
 import { VideoPlayer } from "./video-player";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslations } from 'next-intl';
+import { videos } from "@/config/videos";
 
 interface VideoTestimonialProps {
   className?: string;
@@ -8,7 +9,6 @@ interface VideoTestimonialProps {
 
 export function VideoTestimonial({ className = "" }: VideoTestimonialProps) {
   const t = useTranslations('videoTestimonial');
-  const videoSrc = "https://res.cloudinary.com/dtuxt5133/video/upload/v1/uniontac-testimonial.mp4";
 
   return (
     <div className="w-full">
@@ -23,7 +23,9 @@ export function VideoTestimonial({ className = "" }: VideoTestimonialProps) {
             {/* Mobile: Video First */}
             <div className="md:hidden w-full">
               <div className="relative aspect-square rounded-lg overflow-hidden">
-                <VideoPlayer src={videoSrc} />
+                <VideoPlayer 
+                  src={videos.testimonial.src}
+                />
               </div>
             </div>
             
@@ -38,7 +40,9 @@ export function VideoTestimonial({ className = "" }: VideoTestimonialProps) {
             {/* Desktop: Video Second */}
             <div className="hidden md:block md:w-1/2">
               <div className="relative aspect-square rounded-lg overflow-hidden">
-                <VideoPlayer src={videoSrc} />
+                <VideoPlayer 
+                  src={videos.testimonial.src}
+                />
               </div>
             </div>
           </div>

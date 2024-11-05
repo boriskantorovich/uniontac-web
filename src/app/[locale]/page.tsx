@@ -11,6 +11,7 @@ import { DonationFormWithCta } from "@/components/donation-form-with-cta";
 import { AboutUsComponent } from "@/components/about-us";
 import { FooterComponent } from "@/components/footer";
 import { VideoTestimonial } from '@/components/video-testimonial';
+import { VideoGrid } from '@/components/video-grid';
 
 export default function LocalePage() {
 
@@ -23,15 +24,15 @@ export default function LocalePage() {
 			</div>
 			<MedkitComponent />
 			
-			<VideoTestimonial />
-			
 			<div id="donate-form">
 			  <DonationFormWithCta showCTA={true} variant="urgent" />
 			</div>
 	
 			<StatisticsComponent />
+			<VideoTestimonial />
 			<HowWeHelpComponent />
 			<AboutUsComponent />
+			<VideoGrid />
 			
 			<div id="donate-form-2">
 			  <DonationFormWithCta showCTA={true} variant="default" />
