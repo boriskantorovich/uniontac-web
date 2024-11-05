@@ -4,6 +4,7 @@ import { VideoPlayer } from "./video-player";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslations } from 'next-intl';
 import { videos } from "@/config/videos";
+import { useVideo } from '@/contexts/video-context';
 
 interface VideoTestimonialProps {
   className?: string;
@@ -11,6 +12,7 @@ interface VideoTestimonialProps {
 
 export function VideoTestimonial({ className = "" }: VideoTestimonialProps) {
   const t = useTranslations('videoTestimonial');
+  const { setActiveVideo } = useVideo();
   
   // Split the quote by \n\n and map to paragraphs
   const quoteParagraphs = t('quote').split('\n\n');
@@ -30,6 +32,7 @@ export function VideoTestimonial({ className = "" }: VideoTestimonialProps) {
               <div className="relative aspect-square rounded-lg overflow-hidden">
                 <VideoPlayer 
                   src={videos.testimonial.src}
+                  onPlay={setActiveVideo}
                 />
               </div>
             </div>
@@ -51,6 +54,7 @@ export function VideoTestimonial({ className = "" }: VideoTestimonialProps) {
               <div className="relative aspect-square rounded-lg overflow-hidden">
                 <VideoPlayer 
                   src={videos.testimonial.src}
+                  onPlay={setActiveVideo}
                 />
               </div>
             </div>
