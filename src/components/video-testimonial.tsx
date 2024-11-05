@@ -1,55 +1,49 @@
-import React, { useEffect } from 'react';
 import { VideoPlayer } from "./video-player";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTranslations } from 'next-intl';
 
 interface VideoTestimonialProps {
   className?: string;
 }
 
 export function VideoTestimonial({ className = "" }: VideoTestimonialProps) {
-  // Add version number and transformation parameters
+  const t = useTranslations('videoTestimonial');
   const videoSrc = "https://res.cloudinary.com/dtuxt5133/video/upload/v1/uniontac-testimonial.mp4";
-  
-  // Test the URL before using it
-  const testVideoLoad = () => {
-    fetch(videoSrc, { method: 'HEAD' })
-      .then(response => {
-        console.log('Video URL status:', response.status);
-        console.log('Video URL headers:', response.headers);
-      })
-      .catch(error => {
-        console.error('Error testing video URL:', error);
-      });
-  };
-
-  // Test URL when component mounts
-  useEffect(() => {
-    testVideoLoad();
-  }, []);
 
   return (
-    <section className={`py-16 bg-gray-50 ${className}`}>
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">
-          Our Impact Stories
-        </h2>
-        <div className="max-w-3xl mx-auto">
-          <VideoPlayer
-            src={videoSrc}
-            className="w-full aspect-video"
-          />
-          
-          {/* Debug info */}
-          <div className="mt-4 p-4 bg-gray-100 rounded text-sm">
-            <p>Video URL: {videoSrc}</p>
-            <button 
-              onClick={testVideoLoad}
-              className="mt-2 px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
-            >
-              Test Video URL
-            </button>
+    <div className="w-full">
+      <Card className="bg-gray-900 text-white p-6 md:p-20 border-0 ring-0 ring-offset-0 shadow-none">
+        <CardHeader>
+          <CardTitle className="text-4xl md:text-5xl pt-6 mb:pt-0 leading-tight font-semibold text-left mb-2">
+            {t('title')}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Mobile: Video First */}
+            <div className="md:hidden w-full">
+              <div className="relative aspect-square rounded-lg overflow-hidden">
+                <VideoPlayer src={videoSrc} />
+              </div>
+            </div>
+            
+            {/* Text Content */}
+            <div className="md:w-1/2">
+              <div className="space-y-4">
+                <p className="text-white text-xl">{t('quote')}</p>
+                <p className="text-white text-lg italic">— {t('author')}</p>
+              </div>
+            </div>
+            
+            {/* Desktop: Video Second */}
+            <div className="hidden md:block md:w-1/2">
+              <div className="relative aspect-square rounded-lg overflow-hidden">
+                <VideoPlayer src={videoSrc} />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </CardContent>
+      </Card>
+    </div>
   );
 } 

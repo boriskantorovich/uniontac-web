@@ -97,5 +97,10 @@
         "href": "https://uniontacua.com/en/campaigns"
       }
     }
+  },
+  "videoTestimonial": {
+    "title": "Stories from the Frontline",
+    "quote": "UNIONTAC's medical kits have become essential tools for our combat medics. Their quick delivery and high quality have directly contributed to saving lives in critical moments.",
+    "author": "Combat Medic, 47th Brigade"
   }
 } 
