@@ -13,22 +13,33 @@ interface VideoPlayerProps {
 export function VideoPlayer({ src, className = "", onPlay }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const playPromiseRef = useRef<Promise<void> | null>(null);
 
   const handleVideoClick = async () => {
-    if (videoRef.current) {
-      try {
-        if (videoRef.current.paused) {
-          if (videoRef.current.ended) {
-            videoRef.current.currentTime = 0;
-          }
-          await videoRef.current.play();
-          onPlay?.(videoRef.current);
-        } else {
-          videoRef.current.pause();
+    if (!videoRef.current) return;
+
+    try {
+      if (videoRef.current.paused) {
+        if (videoRef.current.ended) {
+          videoRef.current.currentTime = 0;
         }
-      } catch (error) {
+        // Store the play promise
+        playPromiseRef.current = videoRef.current.play();
+        await playPromiseRef.current;
+        onPlay?.(videoRef.current);
+      } else {
+        // Wait for any pending play operation to complete before pausing
+        if (playPromiseRef.current) {
+          await playPromiseRef.current;
+        }
+        await videoRef.current.pause();
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name !== 'AbortError') {
         console.error('Video playback error:', error);
       }
+    } finally {
+      playPromiseRef.current = null;
     }
   };
 
