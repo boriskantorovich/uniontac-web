@@ -64,7 +64,7 @@ function StatItemWithDescription({ value, title, namespace }: {
       <h3 className="text-4xl md:text-5xl font-semibold bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-300 text-transparent bg-clip-text">
         {value}
       </h3>
-      <h4 className="text-xl sm:text-2xl font-semibold">{title}</h4>
+      <h4 className="text-2xl font-semibold">{title}</h4>
       <p className="text-white">
         {t('description.prefix')}
         <Highlight>{t('description.highlight')}</Highlight>

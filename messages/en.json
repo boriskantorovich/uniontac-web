@@ -88,10 +88,14 @@
   },
   "footer": {
     "menu": {
-      "howToHelp": "How to\u00A0help",
-      "getHelp": "Get help",
-      "aboutUs": "About us",
-      "reports": "Reports"
+      "aboutUs": {
+        "text": "About us",
+        "href": "https://uniontacua.com/en/about-us"
+      },
+      "reports": {
+        "text": "Reports",
+        "href": "https://uniontacua.com/en/campaigns"
+      }
     }
   }
 } 

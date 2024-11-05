@@ -11,10 +11,8 @@ export function FooterComponent() {
   const t = useTranslations('footer.menu')
   
   const menuItems = [
-    { name: t('howToHelp'), href: "/how-to-help" },
-    { name: t('getHelp'), href: "/get-help" },
-    { name: t('aboutUs'), href: "/about" },
-    { name: t('reports'), href: "/reports" },
+    { name: t('aboutUs.text'), href: t('aboutUs.href') },
+    { name: t('reports.text'), href: t('reports.href') },
   ]
 
   const handleSocialLinkClick = (platform: string) => {
@@ -28,13 +26,13 @@ export function FooterComponent() {
           <div className="flex flex-col md:flex-row justify-between items-center mb-4">
             <div className="flex flex-wrap justify-center md:justify-start gap-6 mb-4 md:mb-0">
               {menuItems.map((item) => (
-                <Link
+                <a
                   key={item.name}
                   href={item.href}
                   className="text-white/70 hover:text-white text-sm font-medium transition-colors"
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
             </div>
             <div className="flex items-center space-x-4">

@@ -88,10 +88,14 @@
   },
   "footer": {
     "menu": {
-      "howToHelp": "Как помочь",
-      "getHelp": "Получить помощь",
-      "aboutUs": "О нас",
-      "reports": "Отчеты"
+      "aboutUs": {
+        "text": "О нас",
+        "href": "https://uniontacua.com/ru/about-us"
+      },
+      "reports": {
+        "text": "Отчеты",
+        "href": "https://uniontacua.com/ru/campaigns"
+      }
     }
   }
 } 
