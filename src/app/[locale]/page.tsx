@@ -10,7 +10,7 @@ import { MedkitComponent } from "@/components/medkit";
 import { DonationFormWithCta } from "@/components/donation-form-with-cta";
 import { AboutUsComponent } from "@/components/about-us";
 import { FooterComponent } from "@/components/footer";
-import { VideoTestimonial } from '@/components/video-testimonial-player';
+import { VideoTestimonial } from '@/components/video-testimonial';
 
 export default function LocalePage() {
 
@@ -22,6 +22,8 @@ export default function LocalePage() {
 			  <CtaComponent />
 			</div>
 			<MedkitComponent />
+			
+			<VideoTestimonial />
 			
 			<div id="donate-form">
 			  <DonationFormWithCta showCTA={true} variant="urgent" />
