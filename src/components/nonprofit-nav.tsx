@@ -5,6 +5,7 @@ import { useRouter, usePathname } from '@/i18n/routing';
 import { useLocale, useTranslations } from 'next-intl';
 import { scrollHandlers } from "@/utils/scroll-handlers"
 import { Card, CardContent } from "@/components/ui/card"
+import { analytics } from '@/utils/analytics'
 
 export function NonprofitNavComponent() {
   const t = useTranslations('nav');
@@ -25,8 +26,14 @@ export function NonprofitNavComponent() {
   }, []);
 
   const handleLanguageChange = (locale: string) => {
+    analytics.trackNavigation('Language Change', locale);
     setActiveLocale(locale);
     router.replace(pathname, {locale});
+  };
+
+  const handleDonateClick = () => {
+    analytics.trackNavigation('Donate Button Click', 'Header');
+    scrollHandlers.handleDonateClick();
   };
 
   const desktopButtonClasses = isAfterHero
@@ -52,6 +59,7 @@ export function NonprofitNavComponent() {
               <a 
                 href="https://uniontacua.com" 
                 className="text-xl font-bold uppercase bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-300 text-transparent bg-clip-text"
+          
               >
                 {t('brand')}
               </a>
@@ -69,14 +77,14 @@ export function NonprofitNavComponent() {
                 ))}
               </div>
               <button 
-                onClick={() => scrollHandlers.handleDonateClick()}
+                onClick={handleDonateClick}
                 className={desktopButtonClasses}
               >
                 {t('help')}
               </button>
               {isAfterHero && (
                 <button 
-                  onClick={() => scrollHandlers.handleDonateClick()}
+                  onClick={handleDonateClick}
                   className={mobileButtonClasses}
                 >
                   {t('help')}

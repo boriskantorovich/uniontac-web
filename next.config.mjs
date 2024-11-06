@@ -6,7 +6,13 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['uniontacua.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'uniontacua.com',
+        pathname: '/**',
+      },
+    ],
   },
   swcMinify: true,
   compiler: {

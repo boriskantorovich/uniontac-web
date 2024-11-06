@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { useTranslations } from 'next-intl'
+import { analytics } from '@/utils/analytics'
 
 interface DonationFormProps {
   showCTA?: boolean;
@@ -26,11 +27,20 @@ export function DonationFormWithCta({
 
   const ctaText = t(`ctaTexts.${variant}`)
 
+  const formId = variant;
+
   const handleAmountClick = (value: string) => {
     setAmount(value)
+    analytics.trackDonationForm('Payment Option Click', `$${value}`, formId);
   }
 
   const handleDonateClick = () => {
+    const numericAmount = parseInt(amount, 10);
+
+    if (!isNaN(numericAmount) && numericAmount > 0) {
+      analytics.trackDonationForm('Donate Button Click', `$${amount}`, formId, numericAmount);
+    }
+
     window.location.href = paymentLinks[amount as keyof typeof paymentLinks]
   }
 
@@ -55,7 +65,10 @@ export function DonationFormWithCta({
             </p>
             <p className="text-xl mb-8">{t('monthlySupport')}</p>
             
-            <form onSubmit={(e) => { e.preventDefault(); handleDonateClick(); }} className="space-y-6 mb-8">
+            <form onSubmit={(e) => { 
+              e.preventDefault(); 
+              handleDonateClick(); 
+            }} className="space-y-6 mb-8">
               <RadioGroup
                 value={amount}
                 onValueChange={handleAmountClick}

@@ -19,6 +19,10 @@ export function FooterComponent() {
     analytics.trackFooter('Social Link Click', platform);
   };
 
+  const handleMenuItemClick = (itemName: string) => {
+    analytics.trackFooter('Menu Item Click', itemName);
+  };
+
   return (
     <footer className="w-full">
       <Card className="bg-black/90 backdrop-blur-sm border-0 ring-0 ring-offset-0 shadow-none">
@@ -30,6 +34,7 @@ export function FooterComponent() {
                   key={item.name}
                   href={item.href}
                   className="text-white/70 hover:text-white text-sm font-medium transition-colors"
+                  onClick={() => handleMenuItemClick(item.name)}
                 >
                   {item.name}
                 </a>
