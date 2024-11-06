@@ -4,13 +4,52 @@ declare global {
 			event: string;
 			[key: string]: string | number | boolean;
 		  }>;
+		analyticsQueue: Array<{
+			event: string;
+			params: Record<string, string | number | boolean>;
+		}>;
 	}
   }
   
 type EventParams = Record<string, string | number | boolean>;
 
 class Analytics {
+  private queue: Array<{event: string; params: EventParams}> = [];
+  private isInitialized = false;
+
+  constructor() {
+    if (typeof window !== 'undefined') {
+      window.analyticsQueue = this.queue;
+      this.initializeWhenReady();
+    }
+  }
+
+  private initializeWhenReady() {
+    if (document.readyState === 'complete') {
+      this.processQueue();
+    } else {
+      window.addEventListener('load', () => {
+        setTimeout(() => this.processQueue(), 2000);
+      });
+    }
+  }
+
+  private processQueue() {
+    this.isInitialized = true;
+    while (this.queue.length > 0) {
+      const item = this.queue.shift();
+      if (item) {
+        this.pushToDataLayer(item.event, item.params);
+      }
+    }
+  }
+
   private pushToDataLayer(event: string, params: EventParams) {
+    if (!this.isInitialized) {
+      this.queue.push({ event, params });
+      return;
+    }
+
     if (typeof window !== 'undefined' && window.dataLayer) {
       window.dataLayer.push({
         event,
