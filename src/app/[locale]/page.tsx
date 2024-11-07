@@ -53,7 +53,7 @@ export default function LocalePage() {
         
         <Suspense fallback={<div className="h-[800px]" />}>
           <div id="donate-form">
-            <DonationFormWithCta showCTA={true} variant="urgent" />
+            <DonationFormWithCta showCTA={true} variant="urgent" formId="form1" />
           </div>
         </Suspense>
 
@@ -79,7 +79,7 @@ export default function LocalePage() {
         
         <Suspense fallback={<div className="h-[800px]" />}>
           <div id="donate-form-2">
-            <DonationFormWithCta showCTA={true} variant="default" />
+            <DonationFormWithCta showCTA={true} variant="default" formId="form2" />
           </div>
         </Suspense>
       </div>
