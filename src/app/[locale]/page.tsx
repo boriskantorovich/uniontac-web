@@ -6,35 +6,56 @@ import { HeroComponent } from "@/components/hero"
 
 // Dynamic imports
 const CtaComponent = dynamic(() => import("@/components/cta").then(mod => mod.CtaComponent), {
-  loading: () => <div className="h-[600px]" />
+  loading: () => <div className="h-[600px]" />,
+  ssr: false
 })
 
 const MedkitComponent = dynamic(() => import("@/components/medkit").then(mod => mod.MedkitComponent), {
-  loading: () => <div className="h-[600px]" />
+  loading: () => <div className="h-[600px]" />,
+  ssr: false
 })
 
 const DonationFormWithCta = dynamic(() => 
   import("@/components/donation-form-with-cta").then(mod => mod.DonationFormWithCta), {
-  loading: () => <div className="h-[800px]" />
+  loading: () => <div className="h-[800px]" />,
+  ssr: false
 })
 
 const StatisticsComponent = dynamic(() => 
-  import("@/components/statistics").then(mod => mod.StatisticsComponent))
+  import("@/components/statistics").then(mod => mod.StatisticsComponent), {
+  loading: () => <div className="h-[400px]" />,
+  ssr: false
+})
 
 const VideoTestimonial = dynamic(() => 
-  import('@/components/video-testimonial').then(mod => mod.VideoTestimonial))
+  import('@/components/video-testimonial').then(mod => mod.VideoTestimonial), {
+  loading: () => <div className="h-[400px]" />,
+  ssr: false
+})
 
 const HowWeHelpComponent = dynamic(() => 
-  import("@/components/how-do-we-help").then(mod => mod.HowWeHelpComponent))
+  import("@/components/how-do-we-help").then(mod => mod.HowWeHelpComponent), {
+  loading: () => <div className="h-[600px]" />,
+  ssr: false
+})
 
 const AboutUsComponent = dynamic(() => 
-  import("@/components/about-us").then(mod => mod.AboutUsComponent))
+  import("@/components/about-us").then(mod => mod.AboutUsComponent), {
+  loading: () => <div className="h-[600px]" />,
+  ssr: false
+})
 
 const VideoGrid = dynamic(() => 
-  import('@/components/video-grid').then(mod => mod.VideoGrid))
+  import('@/components/video-grid').then(mod => mod.VideoGrid), {
+  loading: () => <div className="h-[400px]" />,
+  ssr: false
+})
 
 const FooterComponent = dynamic(() => 
-  import("@/components/footer").then(mod => mod.FooterComponent))
+  import("@/components/footer").then(mod => mod.FooterComponent), {
+  loading: () => <div className="h-[200px]" />,
+  ssr: false
+})
 
 export default function LocalePage() {
   return (

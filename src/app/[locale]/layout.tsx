@@ -1,26 +1,33 @@
 import { NonprofitNavComponent } from '@/components/nonprofit-nav'
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import '@/app/globals.css';
 import { VideoProvider } from '@/contexts/video-context';
+
+// Define a type for the locales
+type Locale = 'en' | 'ua' | 'ru';
 
 export default async function LocaleLayout({
   children,
   params: { locale }
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: Locale };
 }) {
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale)) {
     notFound();
   }
 
-  const messages = await getMessages();
+  let messages;
+  try {
+    messages = (await import(`../../../messages/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
 
   return (
-    <NextIntlClientProvider messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={messages}>
       <VideoProvider>
         <NonprofitNavComponent />
         <main className="pt-8 font-sans">
