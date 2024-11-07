@@ -10,6 +10,7 @@ import { analytics } from '@/utils/analytics'
 interface DonationFormProps {
   showCTA?: boolean;
   variant?: 'urgent' | 'default';
+  formId: string;
 }
 
 const paymentLinks = {
@@ -20,14 +21,13 @@ const paymentLinks = {
 
 export function DonationFormWithCta({ 
   showCTA = false, 
-  variant = 'default' 
+  variant = 'default',
+  formId
 }: DonationFormProps) {
   const t = useTranslations('donationForm')
   const [amount, setAmount] = useState<string>('15')
 
   const ctaText = t(`ctaTexts.${variant}`)
-
-  const formId = variant;
 
   const handleAmountClick = (value: string) => {
     setAmount(value)
@@ -78,11 +78,11 @@ export function DonationFormWithCta({
                   <div key={value}>
                     <RadioGroupItem
                       value={value}
-                      id={`amount-${value}`}
+                      id={`amount-${formId}-${value}`}
                       className="peer sr-only"
                     />
                     <Label
-                      htmlFor={`amount-${value}`}
+                      htmlFor={`amount-${formId}-${value}`}
                       className={`flex items-center justify-center p-4 border-2 border-white cursor-pointer transition-colors ${
                         amount === value ? 'bg-white text-blue-600' : 'hover:bg-white/10'
                       }`}
