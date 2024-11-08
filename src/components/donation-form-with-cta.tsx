@@ -14,9 +14,9 @@ interface DonationFormProps {
 }
 
 const paymentLinks = {
+  '5': 'https://buy.stripe.com/8wM01005HgQv90s8wA',
   '10': 'https://buy.stripe.com/fZedRQ9GhgQvgsUaEF',
-  '15': 'https://buy.stripe.com/fZe1549GhdEjfoQbIK',
-  '25': 'https://buy.stripe.com/8wMcNMaKl0Rx5OgdQT'
+  '15': 'https://buy.stripe.com/fZe1549GhdEjfoQbIK'
 };
 
 export function DonationFormWithCta({ 
