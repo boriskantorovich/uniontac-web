@@ -25,7 +25,7 @@ export function DonationFormWithCta({
   formId
 }: DonationFormProps) {
   const t = useTranslations('donationForm')
-  const [amount, setAmount] = useState<string>('15')
+  const [amount, setAmount] = useState<string>('10')
 
   const ctaText = t(`ctaTexts.${variant}`)
 
