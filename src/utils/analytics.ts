@@ -169,6 +169,14 @@ class Analytics {
   trackDonation(amount: number, formId: string) {
     this.pushToDataLayer('donation', { donation_amount: amount, formId });
   }
+
+  /**
+   * Tracks interactions with the About Us section.
+   * @param action - The action performed.
+   */
+  trackAboutUs(action: string) {
+    this.trackEvent('About Us', action);
+  }
 }
 
 export const analytics = new Analytics();

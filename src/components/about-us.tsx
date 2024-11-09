@@ -41,7 +41,7 @@ export function AboutUsComponent() {
                   {t('paragraph2')}
                 </p>
                 <Button 
-                  onClick={() => scrollHandlers.handleDonateClick2()}
+                  onClick={() => scrollHandlers.handleAboutUsToFormClick()}
                   className="w-full bg-white text-blue-600 hover:bg-blue-100 font-semibold py-10 text-3xl"
                 >
                   {t('ctaButton')}

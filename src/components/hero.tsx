@@ -34,7 +34,7 @@ export function HeroComponent() {
         <div className="flex flex-col md:flex-row items-center gap-4">
           <button 
             className="w-full md:w-[400px] bg-blue-600 hover:bg-blue-700 text-white font-semibold py-8 rounded-lg text-3xl transition duration-300"
-            onClick={() => scrollHandlers.handleDonateClick()}
+            onClick={() => scrollHandlers.handleHeroToFormClick()}
           >
             {t('helpButton')}
           </button>

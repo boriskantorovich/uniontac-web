@@ -36,12 +36,19 @@ export function DonationFormWithCta({
 
   const handleDonateClick = () => {
     const numericAmount = parseInt(amount, 10);
+    const paymentLink = paymentLinks[amount as keyof typeof paymentLinks];
 
     if (!isNaN(numericAmount) && numericAmount > 0) {
-      analytics.trackDonationForm('Donate Button Click', `$${amount}`, formId, numericAmount);
+      analytics.trackDonation(numericAmount, formId);
+      
+      if (paymentLink) {
+        window.location.href = paymentLink;
+      } else {
+        analytics.trackEvent('Error', 'Invalid Payment Link', `Amount: ${amount}`, undefined, { formId });
+      }
+    } else {
+      analytics.trackEvent('Error', 'Invalid Amount', `Amount: ${amount}`, undefined, { formId });
     }
-
-    window.location.href = paymentLinks[amount as keyof typeof paymentLinks]
   }
 
   return (

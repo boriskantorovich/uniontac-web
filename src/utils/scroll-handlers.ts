@@ -8,12 +8,12 @@ export const scrollToElement = (elementId: string) => {
 };
 
 export const scrollHandlers = {
-  handleDonateClick: () => {
-    analytics.trackHero('Donate Button Click');
+  handleHeroToFormClick: () => {
+    analytics.trackHero('Navigate To Form');
     scrollToElement('donate-form');
   },
-  handleDonateClick2: () => {
-    analytics.trackHero('Donate Button Click');
+  handleAboutUsToFormClick: () => {
+    analytics.trackAboutUs('Navigate To Form 2');
     scrollToElement('donate-form-2');
   },
   handleLearnMoreClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
