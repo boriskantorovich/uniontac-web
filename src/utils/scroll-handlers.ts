@@ -12,6 +12,10 @@ export const scrollHandlers = {
     analytics.trackHero('Navigate To Form');
     scrollToElement('donate-form');
   },
+  handleNavbarToFormClick: () => {
+    analytics.trackNavigation('Navigate To Form', 'Header');
+    scrollToElement('donate-form');
+  },
   handleAboutUsToFormClick: () => {
     analytics.trackAboutUs('Navigate To Form 2');
     scrollToElement('donate-form-2');

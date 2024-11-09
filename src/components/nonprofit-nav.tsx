@@ -32,8 +32,7 @@ export function NonprofitNavComponent() {
   };
 
   const handleDonateClick = () => {
-    analytics.trackNavigation('Donate Button Click', 'Header');
-    scrollHandlers.handleDonateClick();
+    scrollHandlers.handleNavbarToFormClick();
   };
 
   const desktopButtonClasses = isAfterHero
