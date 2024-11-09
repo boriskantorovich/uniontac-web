@@ -6,6 +6,9 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { useTranslations } from 'next-intl'
 import { analytics } from '@/utils/analytics'
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
+import { locales } from '@/i18n/config'
 
 interface DonationFormProps {
   showCTA?: boolean;
@@ -51,6 +54,9 @@ export function DonationFormWithCta({
     }
   }
 
+  const params = useParams()
+  const isUaLocale = params.locale === 'ua' && locales.includes('ua')
+
   return (
     <div className="w-full pt-6 md:p-6">
       <div className="flex flex-col max-w-[800px] mx-auto">
@@ -70,7 +76,7 @@ export function DonationFormWithCta({
             <p className="mb-6">
               {t('description.text')}
             </p>
-            <p className="text-xl mb-8">{t('monthlySupport')}</p>
+            <p className="text-xl mb-6">{t('monthlySupport')}</p>
             
             <form onSubmit={(e) => { 
               e.preventDefault(); 
@@ -107,6 +113,19 @@ export function DonationFormWithCta({
                 {t('helpButton')}
               </Button>
             </form>
+            
+            {isUaLocale && (
+              <p className="mt-6">
+                {t('singlePaymentText').replace('посилання', '')}
+                <Link
+                  href="https://send.monobank.ua/jar/3rE26M54vb"
+                  onClick={() => analytics.trackMonobank('Click', formId)}
+                  className="underline hover:no-underline"
+                >
+                  посилання
+                </Link>
+              </p>
+            )}
             
             <p className="mt-4 text-sm text-blue-100">
               {t('legalText')}

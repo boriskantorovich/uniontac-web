@@ -114,6 +114,7 @@ class Analytics {
     this.trackEvent('Hero', action);
   }
 
+  
   /**
    * Tracks interactions with the donation form.
    * @param action - The action performed (e.g., 'Donate Button Click').
@@ -176,6 +177,19 @@ class Analytics {
    */
   trackAboutUs(action: string) {
     this.trackEvent('About Us', action);
+  }
+
+  /**
+   * Tracks Monobank donation link interactions
+   * @param action - The action performed
+   * @param formId - The identifier of the form
+   */
+  trackMonobank(action: string, formId: string) {
+    this.trackEvent('Monobank Donation', action, undefined, undefined, {
+      formId,
+      donation_type: 'single_payment',
+      payment_method: 'monobank'
+    });
   }
 }
 
