@@ -84,7 +84,9 @@
     "ctaTexts": {
       "urgent": "People fighting\u00A0for\u00A0peace need your\u00A0support\n\nEven $15 can save a\u00A0life",
       "default": "Don't pass by those who desperately need help"
-    }
+    },
+    "oneTimeSupport": "One Time",
+    "monthlyButton": "Monthly"
   },
   "footer": {
     "menu": {
