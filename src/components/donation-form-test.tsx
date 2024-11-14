@@ -10,66 +10,112 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { locales } from '@/i18n/config'
 
+type AmountType = {
+  monthly: '5' | '10' | '15';
+  onetime: '10' | '20' | '40';
+}
+
+type DonationType = 'monthly' | 'onetime';
+
 interface DonationFormProps {
   showCTA?: boolean;
   variant?: 'urgent' | 'default';
   formId: string;
 }
 
-const monthlyPaymentLinks = {
-  '5': 'https://buy.stripe.com/8wM01005HgQv90s8wA',
-  '10': 'https://buy.stripe.com/fZedRQ9GhgQvgsUaEF',
-  '15': 'https://buy.stripe.com/fZe1549GhdEjfoQbIK'
+type PaymentLinksType = {
+  monthly: {
+    [K in 'ua' | 'ru' | 'en']: {
+      '5': string;
+      '10': string;
+      '15': string;
+    }
+  };
+  onetime: {
+    [K in 'ua' | 'ru' | 'en']: {
+      '10': string;
+      '20': string;
+      '40': string;
+    }
+  };
 };
 
-const onetimePaymentLinks = {
-  '20': 'https://buy.stripe.com/00gfZYcSteIn4Kc9AG',
-  '40': 'https://buy.stripe.com/6oEfZY5q143J2C49AH',
-  '80': 'https://buy.stripe.com/fZe1544lX2ZFfoQ8wE'
+const PAYMENT_LINKS: PaymentLinksType = {
+  monthly: {
+    ua: {
+      '5': 'https://donate.stripe.com/6oE010aKl0Rx2C4bJ0',
+      '10': 'https://donate.stripe.com/8wM7ts8Cd1VB6SkbJ1',
+      '15': 'https://donate.stripe.com/dR6154bOpas7ekMeVe'
+    },
+    ru: {
+      '5': 'https://donate.stripe.com/aEU3dccSt8jZ2C4fZl',
+      '10': 'https://donate.stripe.com/aEUbJI4lX1VB0tWbJb',
+      '15': 'https://donate.stripe.com/aEUbJI4lX1VB0tWbJb'
+    },
+    en: {
+      '5': 'https://donate.stripe.com/dR6154g4FbwbccE14f',
+      '10': 'https://donate.stripe.com/28o8xwbOpfMr6Sk28o',
+      '15': 'https://donate.stripe.com/14kfZYbOp57Nb8A00h'
+    }
+  },
+  onetime: {
+    ua: {
+      '10': 'https://donate.stripe.com/eVa5lkg4F0RxekM8wK',
+      '20': 'https://donate.stripe.com/3cs3dc2dP43J7Wo4gt',
+      '40': 'https://donate.stripe.com/eVaeVU9Gh2ZFgsU4gv'
+    },
+    ru: {
+      '10': 'https://donate.stripe.com/dR6154bOpas7ekMeVe',
+      '20': 'https://donate.stripe.com/aEU3dccSt8jZ2C4fZl',
+      '40': 'https://donate.stripe.com/aEU3dccSt8jZ2C4fZl'
+    },
+    en: {
+      '10': 'https://donate.stripe.com/aEU3dccSt8jZ2C4fZl',
+      '20': 'https://donate.stripe.com/aEU3dccSt8jZ2C4fZl',
+      '40': 'https://donate.stripe.com/aEU3dccSt8jZ2C4fZl'
+    }
+  }
+} as const;
+
+const AMOUNTS = {
+  monthly: ['5', '10', '15'] as const,
+  onetime: ['10', '20', '40'] as const
 };
 
-export function DonationFormTest({ 
-  showCTA = false, 
-  variant = 'default',
-  formId
-}: DonationFormProps) {
+const DEFAULT_AMOUNTS: Record<DonationType, AmountType[DonationType]> = {
+  monthly: '10',
+  onetime: '20'
+} as const;
+
+export function DonationFormTest({ showCTA = false, variant = 'default', formId }: DonationFormProps) {
   const t = useTranslations('donationForm')
-  const [donationType, setDonationType] = useState<'monthly' | 'onetime'>('monthly')
-  const [amount, setAmount] = useState<string>(donationType === 'monthly' ? '10' : '40')
-
-  const ctaText = t(`ctaTexts.${variant}`)
-  const paymentLinks = donationType === 'monthly' ? monthlyPaymentLinks : onetimePaymentLinks
+  const params = useParams()
+  const locale = params.locale as keyof typeof PAYMENT_LINKS.monthly
+  const isUaLocale = locale === 'ua' && locales.includes('ua')
+  
+  const [donationType, setDonationType] = useState<DonationType>('monthly')
+  const [amount, setAmount] = useState<AmountType[typeof donationType]>(DEFAULT_AMOUNTS[donationType])
 
   const handleAmountClick = (value: string) => {
-    setAmount(value)
-    analytics.trackDonationForm('Payment Option Click', `$${value}`, formId);
+    setAmount(value as AmountType[typeof donationType])
+    analytics.trackDonationForm('Payment Option Click', `$${value}`, formId)
   }
 
   const handleDonateClick = () => {
-    const numericAmount = parseInt(amount, 10);
-    const paymentLink = paymentLinks[amount as keyof typeof paymentLinks];
-
-    if (!isNaN(numericAmount) && numericAmount > 0) {
-      analytics.trackDonation(numericAmount, formId);
-      
-      if (paymentLink) {
-        window.location.href = paymentLink;
-      } else {
-        analytics.trackEvent('Error', 'Invalid Payment Link', `Amount: ${amount}`, undefined, { formId });
-      }
-    } else {
-      analytics.trackEvent('Error', 'Invalid Amount', `Amount: ${amount}`, undefined, { formId });
+    const paymentLink = PAYMENT_LINKS[donationType][locale][amount as keyof PaymentLinksType[typeof donationType][typeof locale]]
+    if (paymentLink) {
+      analytics.trackDonation(parseInt(amount, 10), formId)
+      window.location.href = paymentLink
     }
   }
 
-  const handleDonationTypeChange = (type: 'monthly' | 'onetime') => {
+  const handleDonationTypeChange = (type: DonationType) => {
     setDonationType(type)
-    // Set default amount for each type
-    setAmount(type === 'monthly' ? '10' : '40')
+    setAmount(DEFAULT_AMOUNTS[type])
+    analytics.trackDonationForm('Type Change', type, formId)
   }
 
-  const params = useParams()
-  const isUaLocale = params.locale === 'ua' && locales.includes('ua')
+  const ctaText = t(`ctaTexts.${variant}`)
 
   return (
     <div className="w-full pt-6 md:p-6">
@@ -87,53 +133,37 @@ export function DonationFormTest({
             <h2 className="text-4xl md:text-5xl leading-tight font-semibold mb-4">
               {t('title')}
             </h2>
-            <p className="mb-6">
-              {t('description.text')}
-            </p>
+            <p className="mb-6">{t('description.text')}</p>
 
-            {/* Monthly Support Text */}
-            <p className="text-xl mb-6">
-              {donationType === 'monthly' ? t('monthlySupport') : ''}
-            </p>
+            {donationType === 'monthly' && (
+              <p className="text-xl mb-6">{t('monthlySupport')}</p>
+            )}
 
-            {/* Donation Type Switcher */}
             <div className="flex gap-4 mb-6">
-              <Button
-                type="button"
-                variant={donationType === 'monthly' ? 'default' : 'outline'}
-                onClick={() => handleDonationTypeChange('monthly')}
-                className={`flex-1 px-2 py-2 text-sm sm:text-base rounded-none ${
-                  donationType === 'monthly' 
-                    ? 'bg-white text-blue-600' 
-                    : 'bg-transparent text-white border-white hover:bg-white/10'
-                }`}
-              >
-                {t('monthlyButton')}
-              </Button>
-              <Button
-                type="button"
-                variant={donationType === 'onetime' ? 'default' : 'outline'}
-                onClick={() => handleDonationTypeChange('onetime')}
-                className={`flex-1 px-2 py-2 text-sm sm:text-base rounded-none ${
-                  donationType === 'onetime' 
-                    ? 'bg-white text-blue-600' 
-                    : 'bg-transparent text-white border-white hover:bg-white/10'
-                }`}
-              >
-                {t('oneTimeSupport')}
-              </Button>
+              {(['monthly', 'onetime'] as const).map((type) => (
+                <Button
+                  key={type}
+                  type="button"
+                  onClick={() => handleDonationTypeChange(type)}
+                  className={`flex-1 px-2 py-2 text-sm sm:text-base rounded-none ${
+                    donationType === type 
+                      ? 'bg-white text-blue-600' 
+                      : 'bg-transparent text-white border-white hover:bg-white/10'
+                  }`}
+                >
+                  {t(type === 'monthly' ? 'monthlyButton' : 'oneTimeSupport')}
+                </Button>
+              ))}
             </div>
-            
-            <form onSubmit={(e) => { 
-              e.preventDefault(); 
-              handleDonateClick(); 
-            }} className="space-y-6 mb-8">
+
+            <form onSubmit={(e) => { e.preventDefault(); handleDonateClick(); }} 
+                  className="space-y-6 mb-8">
               <RadioGroup
                 value={amount}
                 onValueChange={handleAmountClick}
                 className="grid grid-cols-3 gap-4"
               >
-                {Object.entries(paymentLinks).map(([value]) => (
+                {AMOUNTS[donationType].map((value) => (
                   <div key={value}>
                     <RadioGroupItem
                       value={value}
@@ -160,22 +190,20 @@ export function DonationFormTest({
               </Button>
             </form>
             
-            {isUaLocale && (
-              <p className="mt-6">
-                {t('singlePaymentText').replace('посилання', '')}
+            {(locale === 'ua' || locale === 'ru') && donationType === 'onetime' && (
+              <p className="mt-6 text-lg text-center">
+                {t('singlePaymentText').replace('монобанк', '')}
                 <Link
                   href="https://send.monobank.ua/jar/3rE26M54vb"
                   onClick={() => analytics.trackMonobank('Click', formId)}
                   className="underline hover:no-underline"
                 >
-                  посилання
+                  монобанк
                 </Link>
               </p>
             )}
             
-            <p className="mt-4 text-sm text-blue-100">
-              {t('legalText')}
-            </p>
+            <p className="mt-4 text-sm text-blue-100">{t('legalText')}</p>
           </div>
         </div>
       </div>
