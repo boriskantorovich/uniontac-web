@@ -48,9 +48,9 @@ const PAYMENT_LINKS: PaymentLinksType = {
       '15': 'https://donate.stripe.com/dR6154bOpas7ekMeVe'
     },
     ru: {
-      '5': 'https://donate.stripe.com/aEU3dccSt8jZ2C4fZl',
+      '5': 'https://donate.stripe.com/aEU8xw8Cd8jZekM3cE',
       '10': 'https://donate.stripe.com/aEUbJI4lX1VB0tWbJb',
-      '15': 'https://donate.stripe.com/aEUbJI4lX1VB0tWbJb'
+      '15': 'https://donate.stripe.com/aEU4hg19L1VBb8A5kO'
     },
     en: {
       '5': 'https://donate.stripe.com/dR6154g4FbwbccE14f',
@@ -62,17 +62,17 @@ const PAYMENT_LINKS: PaymentLinksType = {
     ua: {
       '10': 'https://donate.stripe.com/eVa5lkg4F0RxekM8wK',
       '20': 'https://donate.stripe.com/3cs3dc2dP43J7Wo4gt',
-      '40': 'https://donate.stripe.com/eVaeVU9Gh2ZFgsU4gv'
+      '40': 'https://donate.stripe.com/bIY5lk7y9gQvccE4gs'
     },
     ru: {
-      '10': 'https://donate.stripe.com/dR6154bOpas7ekMeVe',
+      '10': 'https://donate.stripe.com/dR6dRQ5q1as7b8A9AW',
       '20': 'https://donate.stripe.com/aEU3dccSt8jZ2C4fZl',
-      '40': 'https://donate.stripe.com/aEU3dccSt8jZ2C4fZl'
+      '40': 'https://donate.stripe.com/bIYfZYf0BgQvb8AcNa'
     },
     en: {
-      '10': 'https://donate.stripe.com/aEU3dccSt8jZ2C4fZl',
-      '20': 'https://donate.stripe.com/aEU3dccSt8jZ2C4fZl',
-      '40': 'https://donate.stripe.com/aEU3dccSt8jZ2C4fZl'
+      '10': 'https://donate.stripe.com/9AQ5lkg4F0Rx1y03cB',
+      '20': 'https://donate.stripe.com/9AQ2986u557N4KccNc',
+      '40': 'https://donate.stripe.com/4gw010bOp1VB90s9B1'
     }
   }
 } as const;
