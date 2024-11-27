@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
@@ -9,6 +9,13 @@ import { analytics } from '@/utils/analytics'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { locales } from '@/i18n/config'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 
 type AmountType = {
   monthly: '5' | '10' | '15';
@@ -95,6 +102,7 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
   
   const [donationType, setDonationType] = useState<DonationType>('monthly')
   const [amount, setAmount] = useState<AmountType[typeof donationType]>(DEFAULT_AMOUNTS[donationType])
+  const [showOnetimeModal, setShowOnetimeModal] = useState(false)
 
   const handleAmountClick = (value: string) => {
     setAmount(value as AmountType[typeof donationType])
@@ -110,104 +118,155 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
   }
 
   const handleDonationTypeChange = (type: DonationType) => {
+    if (type === 'onetime') {
+      setShowOnetimeModal(true)
+      analytics.trackDonationForm('Show Onetime Modal', 'modal_shown', formId)
+      return
+    }
+    
     setDonationType(type)
     setAmount(DEFAULT_AMOUNTS[type])
     analytics.trackDonationForm('Type Change', type, formId)
   }
 
+  const handleModalClose = (confirmed: boolean) => {
+    setShowOnetimeModal(false)
+    
+    if (confirmed) {
+      setDonationType('onetime')
+      setAmount(DEFAULT_AMOUNTS.onetime)
+      analytics.trackDonationForm('Type Change', 'onetime', formId)
+    } else {
+      analytics.trackDonationForm('Modal Rejected', 'stayed_monthly', formId)
+    }
+  }
+
   const ctaText = t(`ctaTexts.${variant}`)
 
   return (
-    <div className="w-full pt-6 md:p-6">
-      <div className="flex flex-col max-w-[800px] mx-auto">
-        {showCTA && ctaText && (
-          <div className="m-8 text-left">
-            <h2 className="text-3xl font-semibold text-white whitespace-pre-line">
-              {ctaText}
-            </h2>
-          </div>
-        )}
-        
-        <div className="w-full">
-          <div className="bg-blue-600 text-white px-6 py-8 md:p-8">
-            <h2 className="text-4xl md:text-5xl leading-tight font-semibold mb-4">
-              {t('title')}
-            </h2>
-            <p className="mb-6">{t('description.text')}</p>
-
-            {donationType === 'monthly' && (
-              <p className="text-xl mb-6">{t('monthlySupport')}</p>
-            )}
-
-            <div className="flex gap-4 mb-6">
-              {(['monthly', 'onetime'] as const).map((type) => (
-                <Button
-                  key={type}
-                  type="button"
-                  onClick={() => handleDonationTypeChange(type)}
-                  className={`flex-1 px-2 py-2 text-sm sm:text-base rounded-none ${
-                    donationType === type 
-                      ? 'bg-white text-blue-600' 
-                      : 'bg-transparent text-white border-white hover:bg-white/10'
-                  }`}
-                >
-                  {t(type === 'monthly' ? 'monthlyButton' : 'oneTimeSupport')}
-                </Button>
-              ))}
+    <>
+      <div className="w-full pt-6 md:p-6">
+        <div className="flex flex-col max-w-[800px] mx-auto">
+          {showCTA && ctaText && (
+            <div className="m-8 text-left">
+              <h2 className="text-3xl font-semibold text-white whitespace-pre-line">
+                {ctaText}
+              </h2>
             </div>
+          )}
+          
+          <div className="w-full">
+            <div className="bg-blue-600 text-white px-6 py-8 md:p-8">
+              <h2 className="text-4xl md:text-5xl leading-tight font-semibold mb-4">
+                {t('title')}
+              </h2>
+              <p className="mb-6">{t('description.text')}</p>
 
-            <form onSubmit={(e) => { e.preventDefault(); handleDonateClick(); }} 
-                  className="space-y-6 mb-8">
-              <RadioGroup
-                value={amount}
-                onValueChange={handleAmountClick}
-                className="grid grid-cols-3 gap-4"
-              >
-                {AMOUNTS[donationType].map((value) => (
-                  <div key={value}>
-                    <RadioGroupItem
-                      value={value}
-                      id={`amount-${formId}-${value}`}
-                      className="peer sr-only"
-                    />
-                    <Label
-                      htmlFor={`amount-${formId}-${value}`}
-                      className={`flex items-center justify-center p-4 border-2 border-white cursor-pointer transition-colors ${
-                        amount === value ? 'bg-white text-blue-600' : 'hover:bg-white/10'
-                      }`}
-                    >
-                      ${value}
-                    </Label>
-                  </div>
+              {donationType === 'monthly' && (
+                <p className="text-xl mb-6">{t('monthlySupport')}</p>
+              )}
+
+              <div className="flex gap-4 mb-6">
+                {(['monthly', 'onetime'] as const).map((type) => (
+                  <Button
+                    key={type}
+                    type="button"
+                    onClick={() => handleDonationTypeChange(type)}
+                    className={`flex-1 px-2 py-2 text-sm sm:text-base rounded-none ${
+                      donationType === type 
+                        ? 'bg-white text-blue-600' 
+                        : 'bg-transparent text-white border-white hover:bg-white/10'
+                    }`}
+                  >
+                    {t(type === 'monthly' ? 'monthlyButton' : 'oneTimeSupport')}
+                  </Button>
                 ))}
-              </RadioGroup>
+              </div>
 
-              <Button
-                type="submit"
-                className="w-full bg-white text-blue-600 hover:bg-blue-100 font-semibold py-10 text-3xl"
-              >
-                {t('helpButton')}
-              </Button>
-            </form>
-            
-            {(locale === 'ua' || locale === 'ru') && donationType === 'onetime' && (
-              <p className="mt-6 text-lg text-center">
-                {t('singlePaymentText').replace('монобанк', '')}
-                <Link
-                  href="https://send.monobank.ua/jar/3rE26M54vb"
-                  onClick={() => analytics.trackMonobank('Click', formId)}
-                  className="underline hover:no-underline"
+              <form onSubmit={(e) => { e.preventDefault(); handleDonateClick(); }} 
+                    className="space-y-6 mb-8">
+                <RadioGroup
+                  value={amount}
+                  onValueChange={handleAmountClick}
+                  className="grid grid-cols-3 gap-4"
                 >
-                  монобанк
-                </Link>
-              </p>
-            )}
-            
-            <p className="mt-4 text-sm text-blue-100">{t('legalText')}</p>
+                  {AMOUNTS[donationType].map((value) => (
+                    <div key={value}>
+                      <RadioGroupItem
+                        value={value}
+                        id={`amount-${formId}-${value}`}
+                        className="peer sr-only"
+                      />
+                      <Label
+                        htmlFor={`amount-${formId}-${value}`}
+                        className={`flex items-center justify-center p-4 border-2 border-white cursor-pointer transition-colors ${
+                          amount === value ? 'bg-white text-blue-600' : 'hover:bg-white/10'
+                        }`}
+                      >
+                        ${value}
+                      </Label>
+                    </div>
+                  ))}
+                </RadioGroup>
+
+                <Button
+                  type="submit"
+                  className="w-full bg-white text-blue-600 hover:bg-blue-100 font-semibold py-10 text-3xl"
+                >
+                  {t('helpButton')}
+                </Button>
+              </form>
+              
+              {(locale === 'ua' || locale === 'ru') && donationType === 'onetime' && (
+                <p className="mt-6 text-lg text-center">
+                  {t('singlePaymentText').replace('монобанк', '')}
+                  <Link
+                    href="https://send.monobank.ua/jar/3rE26M54vb"
+                    onClick={() => analytics.trackMonobank('Click', formId)}
+                    className="underline hover:no-underline"
+                  >
+                    монобанк
+                  </Link>
+                </p>
+              )}
+              
+              <p className="mt-4 text-sm text-blue-100">{t('legalText')}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      
+      <Dialog 
+        open={showOnetimeModal} 
+        onOpenChange={() => handleModalClose(false)}
+      >
+        <DialogContent className="sm:max-w-[425px] bg-white border-0">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-semibold text-gray-900">
+              {t('onetimeModal.title')}
+            </DialogTitle>
+            <DialogDescription className="text-lg mt-4 text-gray-600">
+              {t('onetimeModal.description')}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col gap-4 mt-6">
+            <Button
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 text-lg font-semibold"
+              onClick={() => handleModalClose(false)}
+            >
+              {t('onetimeModal.monthlyButton')}
+            </Button>
+            <Button
+              variant="outline"
+              className="w-full py-6 text-lg text-gray-700 border-2 hover:bg-gray-100 hover:text-gray-900"
+              onClick={() => handleModalClose(true)}
+            >
+              {t('onetimeModal.onetimeButton')}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   )
 }
 
