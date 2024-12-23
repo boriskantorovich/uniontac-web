@@ -4,193 +4,134 @@ declare global {
 			event: string;
 			[key: string]: string | number | boolean;
 		  }>;
-		analyticsQueue: Array<{
-			event: string;
-			params: Record<string, string | number | boolean>;
-		}>;
 	}
   }
   
 type EventParams = Record<string, string | number | boolean>;
 
+type PaymentMethod = 'monthly' | 'onetime' | 'monobank';
+type Currency = 'USD' | 'UAH';
+type Locale = 'ua' | 'ru' | 'en';
+
+interface DonationParams {
+	action: string;
+	label: string;
+	formId: string;
+	donationAmount?: number;
+	paymentMethod?: PaymentMethod;
+	currency?: Currency;
+	locale?: Locale;
+}
+
 class Analytics {
-  private queue: Array<{event: string; params: EventParams}> = [];
-  private isInitialized = false;
+	private getPageTitle(): string {
+		if (typeof window === 'undefined') return '';
+		return 'Uniontac | Save lives now';
+	}
 
-  constructor() {
-    if (typeof window !== 'undefined') {
-      window.analyticsQueue = this.queue;
-      this.initializeWhenReady();
-    }
-  }
+	private pushToDataLayer(event: string, params: EventParams) {
+		if (typeof window !== 'undefined' && window.dataLayer) {
+			window.dataLayer.push({
+				event,
+				page_title: this.getPageTitle(),
+				...params,
+			});
+		}
+	}
 
-  private initializeWhenReady() {
-    if (document.readyState === 'complete') {
-      this.processQueue();
-    } else {
-      window.addEventListener('load', () => {
-        setTimeout(() => this.processQueue(), 2000);
-      });
-    }
-  }
+	trackEvent(
+		category: string,
+		action: string,
+		label?: string,
+		value?: number,
+		additionalParams?: EventParams
+	) {
+		const eventParams: EventParams = {
+			event_category: category,
+			event_action: action,
+			event_label: label ?? '',
+		};
 
-  private processQueue() {
-    this.isInitialized = true;
-    while (this.queue.length > 0) {
-      const item = this.queue.shift();
-      if (item) {
-        this.pushToDataLayer(item.event, item.params);
-      }
-    }
-  }
+		if (typeof value === 'number' && !isNaN(value) && value > 0) {
+			eventParams.event_value = value;
+		}
 
-  private pushToDataLayer(event: string, params: EventParams) {
-    if (!this.isInitialized) {
-      this.queue.push({ event, params });
-      return;
-    }
+		if (additionalParams) {
+			Object.entries(additionalParams).forEach(([key, value]) => {
+				if (value !== undefined) {
+					eventParams[key] = value;
+				}
+			});
+		}
 
-    if (typeof window !== 'undefined' && window.dataLayer) {
-      window.dataLayer.push({
-        event,
-        ...params,
-      });
-    }
-  }
+		this.pushToDataLayer('custom_event', eventParams);
+	}
 
-  /**
-   * Tracks a custom event by pushing it to the dataLayer.
-   * @param category - The event category (e.g., 'Donation Form').
-   * @param action - The event action (e.g., 'Donate Button Click').
-   * @param label - Optional event label (e.g., '$20').
-   * @param value - Optional event value (e.g., 20).
-   * @param additionalParams - Additional parameters to include.
-   */
-  trackEvent(
-    category: string,
-    action: string,
-    label?: string,
-    value?: number,
-    additionalParams?: EventParams
-  ) {
-    const eventParams: EventParams = {
-      event_category: category,
-      event_action: action,
-      event_label: label ?? '',
-    };
+	trackNavigation(action: string, label: string) {
+		this.trackEvent('Navigation', action, label);
+	}
 
-    // Include event_value only if it is a valid positive number
-    if (typeof value === 'number' && !isNaN(value) && value > 0) {
-      eventParams.event_value = value;
-    }
+	trackDonationForm(action: string, label: string, formId: string, additionalParams?: {
+		donationAmount?: number;
+		paymentMethod?: PaymentMethod;
+		currency?: Currency;
+		locale?: Locale;
+	}) {
+		const eventAction = action === 'Donate Button Click' ? 'Donation Initiate' : action;
 
-    // Merge additionalParams, ensuring no undefined values are introduced
-    if (additionalParams) {
-      for (const key in additionalParams) {
-        const paramValue = additionalParams[key];
-        if (paramValue !== undefined) {
-          eventParams[key] = paramValue;
-        }
-      }
-    }
+		const params: EventParams = {
+			form_id: formId,
+			...(additionalParams?.paymentMethod && { payment_method: additionalParams.paymentMethod }),
+			...(additionalParams?.currency && { currency: additionalParams.currency }),
+			...(additionalParams?.locale && { locale: additionalParams.locale }),
+		};
 
-    this.pushToDataLayer('custom_event', eventParams);
-  }
+		if (additionalParams?.donationAmount) {
+			params.donation_amount = additionalParams.donationAmount;
+		}
 
-  /**
-   * Tracks navigation events.
-   * @param action - The navigation action.
-   * @param label - The label for the action.
-   */
-  trackNavigation(action: string, label: string) {
-    this.trackEvent('Navigation', action, label);
-  }
+		this.trackEvent('Donation Form', eventAction, label, additionalParams?.donationAmount, params);
+	}
 
-  /**
-   * Tracks interactions with the hero section.
-   * @param action - The action performed.
-   */
-  trackHero(action: string) {
-    this.trackEvent('Hero', action);
-  }
+	trackMonobank(action: string, formId: string, locale: Locale) {
+		this.trackEvent('Donation Form', 'Monobank Click', 'monobank', undefined, {
+			form_id: formId,
+			payment_method: 'monobank',
+			currency: 'UAH',
+			locale
+		});
+	}
 
-  
-  /**
-   * Tracks interactions with the donation form.
-   * @param action - The action performed (e.g., 'Donate Button Click').
-   * @param label - The label for the event (e.g., selected amount).
-   * @param formId - Identifier of the form.
-   * @param donationAmount - The numeric value of the donation amount.
-   */
-  trackDonationForm(
-    action: string,
-    label: string,
-    formId: string,
-    donationAmount?: number
-  ) {
-    const value =
-      typeof donationAmount === 'number' && !isNaN(donationAmount) && donationAmount > 0
-        ? donationAmount
-        : undefined;
+	trackDonation(amount: number, formId: string) {
+		this.trackEvent('Donation Form', 'Donation Success', String(amount), amount, {
+			donation_amount: amount,
+			form_id: formId
+		});
+	}
 
-    const additionalParams: EventParams = {
-      formId,
-    };
+	trackFooter(action: string, label: string) {
+		this.trackEvent('Footer', action, label);
+	}
 
-    // Include donation_amount only if it is a valid number
-    if (typeof donationAmount === 'number' && !isNaN(donationAmount) && donationAmount > 0) {
-      additionalParams.donation_amount = donationAmount;
-    }
+	trackSocialMedia(platform: string) {
+		this.trackEvent('Footer', 'Social Link Click', platform);
+	}
 
-    this.trackEvent('Donation Form', action, label, value, additionalParams);
-  }
+	trackMenuItem(itemName: string) {
+		this.trackEvent('Footer', 'Menu Item Click', itemName);
+	}
 
-  /**
-   * Tracks footer interactions.
-   * @param action - The action performed.
-   * @param label - The label for the event.
-   */
-  trackFooter(action: string, label: string) {
-    this.trackEvent('Footer', action, label);
-  }
+	trackHero(action: string) {
+		const eventAction = action === 'Donate Button Click' 
+			? 'Donation Form Navigation' 
+			: action;
+		
+		this.trackEvent('Hero', eventAction);
+	}
 
-  /**
-   * Tracks virtual page views.
-   * @param path - The path of the page.
-   */
-  trackPageView(path: string) {
-    this.pushToDataLayer('virtual_page_view', { page_path: path });
-  }
-
-  /**
-   * Tracks successful donations.
-   * @param amount - The donation amount.
-   * @param formId - The identifier of the form.
-   */
-  trackDonation(amount: number, formId: string) {
-    this.pushToDataLayer('donation', { donation_amount: amount, formId });
-  }
-
-  /**
-   * Tracks interactions with the About Us section.
-   * @param action - The action performed.
-   */
-  trackAboutUs(action: string) {
-    this.trackEvent('About Us', action);
-  }
-
-  /**
-   * Tracks Monobank donation link interactions
-   * @param action - The action performed
-   * @param formId - The identifier of the form
-   */
-  trackMonobank(action: string, formId: string) {
-    this.trackEvent('Monobank Donation', action, undefined, undefined, {
-      formId,
-      donation_type: 'single_payment',
-      payment_method: 'monobank'
-    });
-  }
+	trackAboutUs(action: string) {
+		this.trackEvent('About Us', action);
+	}
 }
 
 export const analytics = new Analytics();

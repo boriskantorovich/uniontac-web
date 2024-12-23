@@ -92,7 +92,9 @@
       "description": "Regular support, even small, means we can save more lives every month. We can plan our purchases and help systematically.",
       "monthlyButton": "No, monthly",
       "onetimeButton": "Yes, one-time for now"
-    }
+    },
+    "customAmountDescription": "Other amount:",
+    "customAmountPlaceholder": "$30"
   },
   "footer": {
     "menu": {

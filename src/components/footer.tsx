@@ -16,11 +16,11 @@ export function FooterComponent() {
   ]
 
   const handleSocialLinkClick = (platform: string) => {
-    analytics.trackFooter('Social Link Click', platform);
+    analytics.trackSocialMedia(platform);
   };
 
   const handleMenuItemClick = (itemName: string) => {
-    analytics.trackFooter('Menu Item Click', itemName);
+    analytics.trackMenuItem(itemName);
   };
 
   return (

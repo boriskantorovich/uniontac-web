@@ -16,6 +16,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import axios from 'axios';
+import { Input } from "@/components/ui/input";
 
 type AmountType = {
   monthly: '5' | '10' | '15';
@@ -96,37 +98,81 @@ const DEFAULT_AMOUNTS: Record<DonationType, AmountType[DonationType]> = {
 
 export function DonationFormTest({ showCTA = false, variant = 'default', formId }: DonationFormProps) {
   const t = useTranslations('donationForm')
-  const params = useParams()
+  const params = useParams() as { locale: string }
   const locale = params.locale as keyof typeof PAYMENT_LINKS.monthly
   const isUaLocale = locale === 'ua' && locales.includes('ua')
   
   const [donationType, setDonationType] = useState<DonationType>('monthly')
   const [amount, setAmount] = useState<AmountType[typeof donationType]>(DEFAULT_AMOUNTS[donationType])
   const [showOnetimeModal, setShowOnetimeModal] = useState(false)
+  const [customAmount, setCustomAmount] = useState<string>('');
 
   const handleAmountClick = (value: string) => {
-    setAmount(value as AmountType[typeof donationType])
-    analytics.trackDonationForm('Payment Option Click', `$${value}`, formId)
+    setAmount(value as AmountType[typeof donationType]);
+    analytics.trackDonationForm('Payment Option Click', `$${value}`, formId, {
+      donationAmount: parseInt(value, 10),
+      paymentMethod: donationType,
+      currency: 'USD',
+      locale
+    });
   }
 
-  const handleDonateClick = () => {
-    const paymentLink = PAYMENT_LINKS[donationType][locale][amount as keyof PaymentLinksType[typeof donationType][typeof locale]]
-    if (paymentLink) {
-      analytics.trackDonation(parseInt(amount, 10), formId)
-      window.location.href = paymentLink
+  const handleDonateClick = async () => {
+    const amountValue = customAmount || amount;
+    const amountInCents = Math.round(parseFloat(amountValue) * 100);
+
+    // Determine minimum amount based on donation type
+    const minAmount = donationType === 'monthly' ? 300 : 1000; // $3 for monthly, $10 for one-time
+
+    // Validate amount
+    if (isNaN(amountInCents) || amountInCents < minAmount) {
+      const minAmountDisplay = (minAmount / 100).toFixed(0);
+      alert(`Please enter a valid amount of at least $${minAmountDisplay}.`);
+      return;
+    }
+
+    analytics.trackDonationForm('Donate Button Click', `$${amountValue}`, formId, {
+      donationAmount: parseFloat(amountValue),
+      paymentMethod: donationType,
+      currency: 'USD',
+      locale,
+    });
+
+    try {
+      // Request to create a Checkout Session
+      const response = await axios.post('/api/create-checkout-session', {
+        amount: amountInCents,
+        donationType,
+        locale,
+      });
+
+      if (response.data.url) {
+        window.location.href = response.data.url;
+      }
+    } catch (error) {
+      console.error('Error creating checkout session:', error);
+      alert('There was an error processing your donation. Please try again.');
     }
   }
 
   const handleDonationTypeChange = (type: DonationType) => {
     if (type === 'onetime') {
-      setShowOnetimeModal(true)
-      analytics.trackDonationForm('Show Onetime Modal', 'modal_shown', formId)
-      return
+      setShowOnetimeModal(true);
+      analytics.trackDonationForm('Show Onetime Modal', 'modal_shown', formId, {
+        paymentMethod: type,
+        currency: 'USD',
+        locale
+      });
+      return;
     }
     
-    setDonationType(type)
-    setAmount(DEFAULT_AMOUNTS[type])
-    analytics.trackDonationForm('Type Change', type, formId)
+    setDonationType(type);
+    setAmount(DEFAULT_AMOUNTS[type]);
+    analytics.trackDonationForm('Type Change', type, formId, {
+      paymentMethod: type,
+      currency: 'USD',
+      locale
+    });
   }
 
   const handleModalClose = (confirmed: boolean) => {
@@ -209,6 +255,37 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
                   ))}
                 </RadioGroup>
 
+                {(donationType === 'monthly' || donationType === 'onetime') && (
+                  <div className="mt-4">
+                    <p className="text-sm text-white mb-2">
+                      {t('customAmountDescription')}
+                    </p>
+                    <Input
+                      type="number"
+                      inputMode="decimal"
+                      min={donationType === 'monthly' ? '3' : '10'}
+                      step="any"
+                      value={customAmount}
+                      placeholder={t('customAmountPlaceholder')}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        const value = e.target.value;
+                        if (/^\d*\.?\d*$/.test(value)) {
+                          setCustomAmount(value);
+                        }
+                      }}
+                      className="w-full p-4 text-xl border-2 border-white 
+                        bg-transparent text-white placeholder-white/70
+                        [appearance:textfield] 
+                        [&::-webkit-outer-spin-button]:appearance-none 
+                        [&::-webkit-inner-spin-button]:appearance-none
+                        outline-none focus:outline-none focus-visible:outline-none
+                        focus:ring-0 focus:border-white 
+                        hover:bg-white/10 transition-colors
+                        focus:bg-transparent active:bg-transparent"
+                    />
+                  </div>
+                )}
+
                 <Button
                   type="submit"
                   className="w-full bg-white text-blue-600 hover:bg-blue-100 font-semibold py-10 text-3xl"
@@ -219,10 +296,10 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
               
               {(locale === 'ua' || locale === 'ru') && donationType === 'onetime' && (
                 <p className="mt-6 text-lg text-center">
-                  {t('singlePaymentText').replace('монобанк', '')}
+                  {t('singlePaymentText').replace('мнобанк', '')}
                   <Link
                     href="https://send.monobank.ua/jar/3rE26M54vb"
-                    onClick={() => analytics.trackMonobank('Click', formId)}
+                    onClick={() => analytics.trackMonobank('Click', formId, locale)}
                     className="underline hover:no-underline"
                   >
                     монобанк
