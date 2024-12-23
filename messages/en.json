@@ -112,5 +112,14 @@
     "title": "Stories from the\u00A0frontline",
     "quote": "Today, I want to thank the entire UNIONTAC team and all the compassionate people who contribute to their efforts.\n\nI especially want to express my gratitude for the first aid kits provided, which, in a critical moment, could save my life or the lives of others nearby.\n\nThanks to you, and only you, they are at hand and will be ready to serve their purpose when needed.",
     "author": "servicewoman of the Armed Forces of Ukraine"
+  },
+  "successPage": {
+    "thankYou": "Thank you for your donation!",
+    "message": "Your support helps save lives in Ukraine. We'll use your donation to provide essential first aid kits to those who need them most."
+  },
+  "cancelPage": {
+    "cancelled": "Payment Cancelled",
+    "message": "Please return to",
+    "linkText": "the donation page"
   }
 } 
