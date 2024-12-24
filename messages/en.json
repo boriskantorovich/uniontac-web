@@ -94,7 +94,10 @@
       "onetimeButton": "Yes, one-time for now"
     },
     "customAmountDescription": "Other amount:",
-    "customAmountPlaceholder": "$30"
+    "customAmountPlaceholder": "$30",
+    "validation": {
+      "minAmount": "Please enter a valid amount of at least ${amount}."
+    }
   },
   "footer": {
     "menu": {

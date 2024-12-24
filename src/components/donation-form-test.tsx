@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dialog"
 import axios from 'axios';
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 type AmountType = {
   monthly: '5' | '10' | '15';
@@ -106,6 +107,8 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
   const [amount, setAmount] = useState<AmountType[typeof donationType]>(DEFAULT_AMOUNTS[donationType])
   const [showOnetimeModal, setShowOnetimeModal] = useState(false)
   const [customAmount, setCustomAmount] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
+  const [isFocused, setIsFocused] = useState(false);
 
   const handleAmountClick = (value: string) => {
     setAmount(value as AmountType[typeof donationType]);
@@ -123,11 +126,11 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
 
     // Determine minimum amount based on donation type
     const minAmount = donationType === 'monthly' ? 300 : 1000; // $3 for monthly, $10 for one-time
+    const minAmountDisplay = (minAmount / 100).toFixed(0);
 
     // Validate amount
     if (isNaN(amountInCents) || amountInCents < minAmount) {
-      const minAmountDisplay = (minAmount / 100).toFixed(0);
-      alert(`Please enter a valid amount of at least $${minAmountDisplay}.`);
+      alert(t('validation.minAmount', { amount: minAmountDisplay }));
       return;
     }
 
@@ -168,6 +171,8 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
     
     setDonationType(type);
     setAmount(DEFAULT_AMOUNTS[type]);
+    setCustomAmount('');
+    setError(null);
     analytics.trackDonationForm('Type Change', type, formId, {
       paymentMethod: type,
       currency: 'USD',
@@ -181,6 +186,8 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
     if (confirmed) {
       setDonationType('onetime')
       setAmount(DEFAULT_AMOUNTS.onetime)
+      setCustomAmount('')
+      setError(null)
       analytics.trackDonationForm('Type Change', 'onetime', formId)
     } else {
       analytics.trackDonationForm('Modal Rejected', 'stayed_monthly', formId)
@@ -263,26 +270,46 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
                     <Input
                       type="number"
                       inputMode="decimal"
-                      min={donationType === 'monthly' ? '3' : '10'}
-                      step="any"
                       value={customAmount}
                       placeholder={t('customAmountPlaceholder')}
+                      onFocus={() => setIsFocused(true)}
+                      onBlur={() => setIsFocused(false)}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         const value = e.target.value;
+                        const numValue = parseFloat(value);
+                        const minAmount = donationType === 'monthly' ? 3 : 10;
+                        
                         if (/^\d*\.?\d*$/.test(value)) {
                           setCustomAmount(value);
+                          // Only show error while input is focused
+                          if (isFocused) {
+                            if (numValue >= minAmount) {
+                              setError(null);
+                            } else {
+                              setError(t('validation.minAmount', { amount: minAmount }));
+                            }
+                          }
                         }
                       }}
-                      className="w-full p-4 text-xl border-2 border-white 
-                        bg-transparent text-white placeholder-white/70
-                        [appearance:textfield] 
-                        [&::-webkit-outer-spin-button]:appearance-none 
-                        [&::-webkit-inner-spin-button]:appearance-none
-                        outline-none focus:outline-none focus-visible:outline-none
-                        focus:ring-0 focus:border-white 
-                        hover:bg-white/10 transition-colors
-                        focus:bg-transparent active:bg-transparent"
+                      className={cn(
+                        "w-full p-4 text-xl border-2 border-white",
+                        "bg-transparent text-white placeholder-white/70",
+                        "[appearance:textfield]",
+                        "[&::-webkit-outer-spin-button]:appearance-none",
+                        "[&::-webkit-inner-spin-button]:appearance-none",
+                        "outline-none focus:outline-none focus-visible:outline-none",
+                        "focus:ring-0 focus:border-white",
+                        "hover:bg-white/10 transition-colors",
+                        "focus:bg-transparent active:bg-transparent",
+                        error && isFocused ? "border-red-500" : "border-white"
+                      )}
+                      aria-invalid={error && isFocused ? "true" : "false"}
                     />
+                    {error && isFocused && (
+                      <p className="mt-2 text-white font-semibold text-sm">
+                        {error}
+                      </p>
+                    )}
                   </div>
                 )}
 
@@ -296,7 +323,7 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
               
               {(locale === 'ua' || locale === 'ru') && donationType === 'onetime' && (
                 <p className="mt-6 text-lg text-center">
-                  {t('singlePaymentText').replace('мнобанк', '')}
+                  {t('singlePaymentText')}{' '}
                   <Link
                     href="https://send.monobank.ua/jar/3rE26M54vb"
                     onClick={() => analytics.trackMonobank('Click', formId, locale)}
@@ -335,7 +362,7 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
             </Button>
             <Button
               variant="outline"
-              className="w-full py-6 text-lg text-gray-700 border-2 hover:bg-gray-100 hover:text-gray-900"
+              className="w-full py-6 text-lg text-gray-300 border-2 hover:bg-gray-100 hover:text-gray-900"
               onClick={() => handleModalClose(true)}
             >
               {t('onetimeModal.onetimeButton')}
