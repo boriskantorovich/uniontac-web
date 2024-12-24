@@ -112,6 +112,8 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
 
   const handleAmountClick = (value: string) => {
     setAmount(value as AmountType[typeof donationType]);
+    setCustomAmount('');
+    setError(null);
     analytics.trackDonationForm('Payment Option Click', `$${value}`, formId, {
       donationAmount: parseInt(value, 10),
       paymentMethod: donationType,
@@ -191,6 +193,30 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
       analytics.trackDonationForm('Type Change', 'onetime', formId)
     } else {
       analytics.trackDonationForm('Modal Rejected', 'stayed_monthly', formId)
+    }
+  }
+
+  const handleCustomAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const numValue = parseFloat(value);
+    const minAmount = donationType === 'monthly' ? 3 : 10;
+    
+    if (/^\d*\.?\d*$/.test(value)) {
+      setCustomAmount(value);
+      if (isFocused) {
+        if (numValue >= minAmount) {
+          setError(null);
+          // Track valid custom amount
+          analytics.trackDonationForm('Payment Option Click', `$${value}`, formId, {
+            donationAmount: numValue,
+            paymentMethod: donationType,
+            currency: 'USD',
+            locale
+          });
+        } else {
+          setError(t('validation.minAmount', { amount: minAmount }));
+        }
+      }
     }
   }
 
@@ -274,23 +300,7 @@ export function DonationFormTest({ showCTA = false, variant = 'default', formId 
                       placeholder={t('customAmountPlaceholder')}
                       onFocus={() => setIsFocused(true)}
                       onBlur={() => setIsFocused(false)}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        const value = e.target.value;
-                        const numValue = parseFloat(value);
-                        const minAmount = donationType === 'monthly' ? 3 : 10;
-                        
-                        if (/^\d*\.?\d*$/.test(value)) {
-                          setCustomAmount(value);
-                          // Only show error while input is focused
-                          if (isFocused) {
-                            if (numValue >= minAmount) {
-                              setError(null);
-                            } else {
-                              setError(t('validation.minAmount', { amount: minAmount }));
-                            }
-                          }
-                        }
-                      }}
+                      onChange={handleCustomAmountChange}
                       className={cn(
                         "w-full p-4 text-xl border-2 border-white",
                         "bg-transparent text-white placeholder-white/70",
