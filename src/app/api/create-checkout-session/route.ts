@@ -10,6 +10,11 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { amount, donationType, locale } = body;
 
+    // Original locale for success/cancel URLs
+    const returnUrlLocale = locale;
+    // Mapped locale for Stripe (use 'en' if locale is 'ua')
+    const stripeLocale = locale === 'ua' ? 'en' : locale;
+
     // Validate amount
     if (!amount || typeof amount !== 'number') {
       return NextResponse.json(
@@ -46,9 +51,11 @@ export async function POST(request: NextRequest) {
         },
       ],
       mode: donationType === 'monthly' ? 'subscription' : 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/cancel`,
-      locale: locale,
+      // Use original locale for return URLs
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${returnUrlLocale}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${returnUrlLocale}/cancel`,
+      // Use mapped locale for Stripe
+      locale: stripeLocale,
     };
 
     const session = await stripe.checkout.sessions.create(sessionParams);
